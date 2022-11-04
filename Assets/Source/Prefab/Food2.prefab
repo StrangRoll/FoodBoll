@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 2093839950912041573}
   - component: {fileID: 1861669534492151854}
   - component: {fileID: 1690445818507530770}
+  - component: {fileID: 1707655756413044306}
   m_Layer: 0
-  m_Name: Cylinder
+  m_Name: Food2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,3 +112,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 763f1dd9df3da28448ec17ed117b254d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1707655756413044306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1812298355214140745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 535cf7ff0ad560f4eaaa9e52589c7a75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _requiredSize: 1
+  _price: 1

@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
-public class Food : MonoBehaviour
+[RequireComponent(typeof(Food))]
+public class FoodPickUpper : MonoBehaviour
 {
+    private Food _food;
+
     private void Awake()
     {
+        _food = GetComponent<Food>();
         var collider = GetComponent<Collider>();
         collider.isTrigger = true;
     }
@@ -15,7 +19,10 @@ public class Food : MonoBehaviour
     {
         if (collider.TryGetComponent<Player>(out Player player))
         {
-            ChangeParent(player.transform);
+            if (player.TryPickUp(_food))
+            {
+                ChangeParent(player.transform);
+            }
         }
     }
 
