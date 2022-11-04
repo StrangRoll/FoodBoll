@@ -28,6 +28,7 @@ public class SphereMovier : MonoBehaviour
     private void OnMove(Vector2 direction)
     {
         Vector3 moveDirection = new Vector3(direction.x, 0, direction.y);
-        _rigidbody.velocity = moveDirection * _moveSpeed;
+        Vector3 moveAxis = new Vector3(moveDirection.z, 0 , -moveDirection.x);
+        _rigidbody.AddTorque(moveAxis * _moveSpeed, ForceMode.VelocityChange);
     }
 }
