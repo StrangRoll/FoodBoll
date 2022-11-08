@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(SphereMovier))]
 public class Player : MonoBehaviour
 {
     [SerializeField] private float _priceCapacity;
@@ -14,7 +13,7 @@ public class Player : MonoBehaviour
     public event UnityAction<Food> SellFood;
     public event UnityAction<float, float> CurrentOccupancyChanged;
 
-    public bool TryPickUp(Food food)
+    public bool TryPickUpFood(Food food)
     {
         if (food.RequiredSize <= _size && _currentPrice + food.Price <= _priceCapacity)
         {

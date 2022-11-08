@@ -1,7 +1,7 @@
 using UnityEngine;
 using Zenject;
 
-public class PlayerFollower : MonoBehaviour
+public class SphereFollower : MonoBehaviour
 {
     [Inject] private SphereMovier _sphere;
 

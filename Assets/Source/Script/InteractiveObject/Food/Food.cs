@@ -13,4 +13,12 @@ public class Food : MonoBehaviour
         RequiredSize = _requiredSize;
         Price = _price;
     }
+
+    private void OnTriggerEnter(Collider collider)
+    {
+        if(collider.TryGetComponent<FoodPickuper>(out FoodPickuper component))
+        {
+            component.Pickup(this);
+        }
+    }
 }
