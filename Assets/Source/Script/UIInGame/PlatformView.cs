@@ -5,7 +5,7 @@ public class PlatformView : MonoBehaviour
 {
     [SerializeField] private Image _frontImage;
     [SerializeField] private Color _activateColor;
-    [SerializeField] private MonoBehaviour _platformContainer;
+    [SerializeField] private MonoBehaviour _platformContainer = null;
 
     private IPlatform _platform => (IPlatform)_platformContainer;
 
@@ -14,6 +14,9 @@ public class PlatformView : MonoBehaviour
     private void OnValidate()
     {
         if (_platformContainer is IPlatform)
+            return;
+
+        if (_platformContainer == null)
             return;
 
         Debug.LogError($"{_platformContainer.name} need to implement {nameof(IPlatform)}.");
