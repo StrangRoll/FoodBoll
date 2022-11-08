@@ -5,7 +5,6 @@ using Zenject;
 
 public class FoodSeller : MonoBehaviour, IPlatform
 {
-
     [SerializeField] private float _timeBetweenSell;
 
     [Inject] private Player _player;
