@@ -25,6 +25,7 @@ public class FoodSeller : MonoBehaviour, IPlatform
     {
         if (collider.TryGetComponent<PlatformActivator>(out PlatformActivator activator))
         {
+            PlayerEntered?.Invoke();
             _canSellFood = true;
             StartCoroutine(FoodSelling(_player));
         }
@@ -32,8 +33,9 @@ public class FoodSeller : MonoBehaviour, IPlatform
 
     public void OnTriggerExit(Collider collider)
     {
-        if (collider is PlatformActivator)
+        if (collider.TryGetComponent<PlatformActivator>(out PlatformActivator activator))
         {
+            PlayerLeft?.Invoke();
             _canSellFood = false;
         }
     }
