@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
 
     public event UnityAction<Food> SellFood;
     public event UnityAction<float, float> CurrentOccupancyChanged;
+    public event UnityAction PlayerFull;
+    public event UnityAction PlayerNotFullMore;
 
     public bool TryPickUpFood(Food food)
     {
@@ -32,6 +34,7 @@ public class Player : MonoBehaviour
             var food = _food.Dequeue();
             ChangeCurrentPrice(food.Price * -1);
             SellFood?.Invoke(food);
+
             return true;
         }
 
@@ -40,10 +43,16 @@ public class Player : MonoBehaviour
 
     private void ChangeCurrentPrice(float deltaPrice)
     {
+        if (_currentPrice == _priceCapacity && deltaPrice < 0)
+            PlayerNotFullMore?.Invoke();
+
         _currentPrice += deltaPrice;
 
         if (_currentPrice < 0 || _currentPrice > _priceCapacity)
             Debug.LogError($"Incorrent player's current price! Current value = {_currentPrice}");
+
+        if (_currentPrice == _priceCapacity)
+            PlayerFull?.Invoke();
 
         CurrentOccupancyChanged?.Invoke(_currentPrice, _priceCapacity);
     }
