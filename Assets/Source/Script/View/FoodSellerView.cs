@@ -3,7 +3,7 @@ using Zenject;
 using DG.Tweening;
 using UnityEngine.Events;
 
-public class FoodSellView : MonoBehaviour
+public class FoodSellerView : MonoBehaviour
 {
     [SerializeField] private Transform _sellPoint;
     [SerializeField] private float _sellAnimationDuration;
@@ -31,7 +31,8 @@ public class FoodSellView : MonoBehaviour
 
     private void OnAnimationCompelte(Food food)
     {
-        FoodSell?.Invoke(food.Price);
+        var price = food.Price;
         Destroy(food.gameObject);
+        FoodSell?.Invoke(food.Price);
     }
 }
