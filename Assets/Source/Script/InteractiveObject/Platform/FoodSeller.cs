@@ -15,9 +15,8 @@ public class FoodSeller : MonoBehaviour, IPlatform
     public event UnityAction PlayerEntered;
     public event UnityAction PlayerLeft;
 
-    private void OnEnable()
+    private void Awake()
     {
-        _player.SellFood += OnSellFood;
         _whaitNextSell = new WaitForSeconds(_timeBetweenSell);
     }
 
@@ -40,11 +39,6 @@ public class FoodSeller : MonoBehaviour, IPlatform
         }
     }
 
-    private void OnDisable()
-    {
-        _player.SellFood -= OnSellFood;
-    }
-
     private IEnumerator FoodSelling(Player player)
     {
         while (_canSellFood)
@@ -56,10 +50,5 @@ public class FoodSeller : MonoBehaviour, IPlatform
 
             yield return _whaitNextSell;
         }
-    }
-
-    private void OnSellFood(Food food)
-    {
-        Destroy(food.gameObject);
     }
 }
