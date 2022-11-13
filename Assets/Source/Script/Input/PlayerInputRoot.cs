@@ -43,8 +43,10 @@ public class PlayerInputRoot : MonoBehaviour
     {
         _isTouching = !_isTouching;
 
-        var touchPosition = Pointer.current.position.ReadValue();
+        if (_isTouching)
+            _moveDirection = Vector2.zero;
 
+        var touchPosition = Pointer.current.position.ReadValue();
         Touch?.Invoke(_isTouching, touchPosition);
     }
 
