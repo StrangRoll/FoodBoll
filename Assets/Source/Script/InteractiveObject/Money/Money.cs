@@ -12,4 +12,10 @@ public class Money : MonoBehaviour
             component.Pickup(this);
         }
     }
+
+    public void DestroyMoney()
+    {
+        MoneyRemoved?.Invoke();
+        Destroy(gameObject);
+    }
 }

@@ -5,12 +5,15 @@ public class FoodPickuper : MonoBehaviour
 {
     [Inject] private Player _player;
 
-    public void Pickup(Food food)
+    public bool TryPickup(Food food)
     {
         if (_player.TryPickUpFood(food))
         {
             ChangeFoodParent(food.transform);
+            return true;
         }
+
+        return false;
     }
 
     private void ChangeFoodParent(Transform foodTransform)

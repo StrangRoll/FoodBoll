@@ -1,11 +1,13 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Zenject;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float _priceCapacity;
-    [SerializeField] private float _size;
+    [Inject] private PlayerData _data;
+    [Inject] private CapacityUpgradeButton _capacityUpgrade;
 
     private Queue<Food> _food = new Queue<Food>();
     private float _currentPrice;
@@ -17,7 +19,7 @@ public class Player : MonoBehaviour
 
     public bool TryPickUpFood(Food food)
     {
-        if (food.RequiredSize <= _size && _currentPrice + food.Price <= _priceCapacity)
+        if (food.RequiredSize <= _data.Size && _currentPrice + food.Price <= _data.PriceCapacity)
         {
             ChangeCurrentPrice(food.Price);
             _food.Enqueue(food);
@@ -34,26 +36,50 @@ public class Player : MonoBehaviour
             var food = _food.Dequeue();
             ChangeCurrentPrice(food.Price * -1);
             SellFood?.Invoke(food);
-
             return true;
         }
 
         return false;
     }
 
+    private void OnEnable()
+    {
+        _capacityUpgrade.CapacityIncreased += OnCapacityIncreased;
+    }
+
+    private void OnDisable()
+    {
+        _capacityUpgrade.CapacityIncreased -= OnCapacityIncreased;
+    }
+
+    private void OnCapacityIncreased(int deltaCapacity)
+    {
+        StartCoroutine(ChangeCurrentOccupancyView(deltaCapacity));
+    }
+
+    private IEnumerator ChangeCurrentOccupancyView(int deltaCapacity)
+    {
+        yield return null;
+
+        if (_currentPrice + deltaCapacity == _data.PriceCapacity)
+            PlayerNotFullMore?.Invoke();
+
+        CurrentOccupancyChanged?.Invoke(_currentPrice, _data.PriceCapacity);
+    }
+
     private void ChangeCurrentPrice(float deltaPrice)
     {
-        if (_currentPrice == _priceCapacity && deltaPrice < 0)
+        if (_currentPrice == _data.PriceCapacity && deltaPrice < 0)
             PlayerNotFullMore?.Invoke();
 
         _currentPrice += deltaPrice;
 
-        if (_currentPrice < 0 || _currentPrice > _priceCapacity)
+        if (_currentPrice < 0 || _currentPrice > _data.PriceCapacity)
             Debug.LogError($"Incorrent player's current price! Current value = {_currentPrice}");
 
-        if (_currentPrice == _priceCapacity)
+        if (_currentPrice == _data.PriceCapacity)
             PlayerFull?.Invoke();
 
-        CurrentOccupancyChanged?.Invoke(_currentPrice, _priceCapacity);
+        CurrentOccupancyChanged?.Invoke(_currentPrice, _data.PriceCapacity);
     }
 }

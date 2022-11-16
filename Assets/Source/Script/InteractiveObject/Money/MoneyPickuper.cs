@@ -16,6 +16,6 @@ public class MoneyPickuper : MonoBehaviour
     private void OnPickupComplete(Money money)
     {
         MoneyPickedUp?.Invoke();
-        Destroy(money.gameObject);
+        money.DestroyMoney();
     }
 }

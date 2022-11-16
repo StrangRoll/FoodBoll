@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Upgrader : MonoBehaviour, IPlatform
+public class UpgradePlatfom : MonoBehaviour, IPlatform
 {
     public event UnityAction PlayerEntered;
     public event UnityAction PlayerLeft;

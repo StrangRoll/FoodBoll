@@ -23,9 +23,8 @@ public class Food : MonoBehaviour
     {
         if(collider.TryGetComponent<FoodPickuper>(out FoodPickuper component))
         {
-            component.Pickup(this);
-            _collider.enabled = false;
-
+            if (component.TryPickup(this))
+                _collider.enabled = false;
         }
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class UpgradeButtonsActivator : MonoBehaviour
 {
     [SerializeField] private CanvasGroup _buttonGroup;
-    [SerializeField] private Upgrader _upgrader;
+    [SerializeField] private UpgradePlatfom _upgrader;
 
     private void OnEnable()
     {

@@ -4,7 +4,7 @@ public class MoneyCell
 {
     public bool IsEmpty { get; private set; }
 
-    public Vector3 _position;
+    private Vector3 _position;
     private Money _money;
 
     public MoneyCell(Vector3 position)

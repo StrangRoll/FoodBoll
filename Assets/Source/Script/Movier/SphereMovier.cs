@@ -4,8 +4,7 @@ using Zenject;
 [RequireComponent(typeof(Rigidbody))]
 public class SphereMovier : MonoBehaviour
 {
-    [SerializeField] private float _moveSpeed;
-
+    [Inject] private PlayerData _data;
     [Inject] private PlayerInputRoot _inputRoot;
 
     private Rigidbody _rigidbody;
@@ -13,6 +12,7 @@ public class SphereMovier : MonoBehaviour
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        _rigidbody.maxAngularVelocity = Mathf.Infinity;
     }
 
     private void OnEnable()
@@ -29,6 +29,6 @@ public class SphereMovier : MonoBehaviour
     {
         Vector3 moveDirection = new Vector3(direction.x, 0, direction.y);
         Vector3 moveAxis = new Vector3(moveDirection.z, 0 , -moveDirection.x);
-        _rigidbody.AddTorque(moveAxis * _moveSpeed, ForceMode.VelocityChange);
+        _rigidbody.AddTorque(moveAxis * _data.Speed, ForceMode.VelocityChange);
     }
 }
