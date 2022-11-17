@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using Zenject;
 
 public class FoodGenerator : MonoBehaviour
@@ -12,7 +13,9 @@ public class FoodGenerator : MonoBehaviour
     private float _blockWidth;
     private float _blockHeight;
 
-    private void Awake()
+    public event UnityAction<int> FoodGenerated;
+
+    private void Start()
     {
         _blockWidth = _blockDimensions.x;
         _blockHeight = _blockDimensions.y;
@@ -21,6 +24,8 @@ public class FoodGenerator : MonoBehaviour
 
     private void GenerateFood()
     {
+        var foodCount = 0;
+
         foreach (var position in _startPositions)
         {
             var foodIndex = Random.Range(0, _foodPrefabs.Length);
@@ -36,8 +41,11 @@ public class FoodGenerator : MonoBehaviour
                     var zFoodPosition = position.y - food.RequiredSpace * j;
                     var foodPosition = new Vector3(xFoodPosition, food.transform.position.y, zFoodPosition);
                     Instantiate(food, foodPosition, food.transform.rotation, _foodParent);
+                    foodCount++;
                 }
             }
         }
+
+        FoodGenerated?.Invoke(foodCount);
     }
 }
