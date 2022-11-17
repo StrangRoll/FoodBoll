@@ -677,8 +677,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 336324194}
+  - component: {fileID: 336324196}
+  - component: {fileID: 336324195}
+  - component: {fileID: 336324197}
   m_Layer: 0
-  m_Name: LevelStage
+  m_Name: LevelProgress
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -707,6 +710,47 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &336324195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 336324193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7743558ee9829444847285010b16757, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &336324196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 336324193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 085a27a105177f24289b3d23577d88cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sliderCountChangerContainer: {fileID: 336324195}
+  _slider: {fileID: 1671947487}
+--- !u!114 &336324197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 336324193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17f49b22b7e68c049815ba4f886c2680, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currentLevelText: {fileID: 1788239652}
+  _nextLevelText: {fileID: 1017709828}
+  _progressBar: {fileID: 336324195}
 --- !u!1 &336601153
 GameObject:
   m_ObjectHideFlags: 0
@@ -1645,6 +1689,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _platformCanvas: {fileID: 1509574517}
+--- !u!114 &1017709828 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1269226781301373089, guid: 6eb4823e86631b84aad3eef30af48278, type: 3}
+  m_PrefabInstance: {fileID: 1797829099941232203}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1030561212 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1269226780561125884, guid: 6eb4823e86631b84aad3eef30af48278, type: 3}
@@ -3902,6 +3957,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _circleImager: {fileID: 1712754398}
   _borderImager: {fileID: 1700868379}
+--- !u!114 &1788239652 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1269226781301373089, guid: 6eb4823e86631b84aad3eef30af48278, type: 3}
+  m_PrefabInstance: {fileID: 1269226781583289408}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1790160141
 GameObject:
   m_ObjectHideFlags: 0
@@ -4402,7 +4468,7 @@ Transform:
   m_GameObject: {fileID: 1996812092}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.7, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 1.6, y: 1.6, z: 1.6}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1061778568}
@@ -5000,6 +5066,18 @@ PrefabInstance:
     - target: {fileID: 1269226780561125884, guid: 6eb4823e86631b84aad3eef30af48278, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1269226780561125884, guid: 6eb4823e86631b84aad3eef30af48278, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 1269226780561125884, guid: 6eb4823e86631b84aad3eef30af48278, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 1269226780561125884, guid: 6eb4823e86631b84aad3eef30af48278, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.99999994
       objectReference: {fileID: 0}
     - target: {fileID: 1269226780561125884, guid: 6eb4823e86631b84aad3eef30af48278, type: 3}
       propertyPath: m_LocalPosition.x

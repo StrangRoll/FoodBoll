@@ -9,7 +9,7 @@ public class PlayerData : MonoBehaviour
 
     public int PriceCapacity { get; private set; } = 20;
     public float Size { get; private set; } = 1;
-    public float Speed { get; private set; } = 1f;
+    public float Speed { get; private set; } = 2f;
 
     private void OnEnable()
     {
