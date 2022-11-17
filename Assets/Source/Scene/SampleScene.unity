@@ -2533,7 +2533,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _buttonGroup: {fileID: 1282012529}
-  _upgrader: {fileID: 1333727607}
+  _platformContainer: {fileID: 1333727607}
 --- !u!1 &1287167783 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7354815545804770432, guid: 95e1032c57a7d2c4f813e9cc4cd4a998, type: 3}
@@ -2706,6 +2706,7 @@ GameObject:
   - component: {fileID: 1342592971}
   - component: {fileID: 1342592974}
   - component: {fileID: 1342592973}
+  - component: {fileID: 1342592975}
   m_Layer: 5
   m_Name: NextLevelButton
   m_TagString: Untagged
@@ -2772,6 +2773,20 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
+--- !u!114 &1342592975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1342592970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a66cfe3803396c844a6ffbf6ca48e7f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _buttonGroup: {fileID: 1342592974}
+  _platformContainer: {fileID: 946873015}
 --- !u!1 &1359005049
 GameObject:
   m_ObjectHideFlags: 0
