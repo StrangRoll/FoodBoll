@@ -113,3 +113,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _requiredSize: 1
   _price: 1
+  _requiredSpace: 1

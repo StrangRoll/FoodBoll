@@ -6,15 +6,22 @@ public class Food : MonoBehaviour
 {
     [SerializeField] private float _requiredSize;
     [SerializeField] private float _price;
+    [SerializeField] private float _requiredSpace;
 
     private Collider _collider;
 
-    public float RequiredSize { get; private set; }
+    public float RequiredSize
+    {
+        get { return _requiredSize; }
+    }
+    public float RequiredSpace
+    {
+        get { return _requiredSpace; }
+    }
     public float Price { get; private set; }
 
     private void Awake()
     {
-        RequiredSize = _requiredSize;
         Price = _price;
         _collider = GetComponent<Collider>();
     }

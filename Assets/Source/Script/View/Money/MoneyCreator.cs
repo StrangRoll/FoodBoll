@@ -9,7 +9,7 @@ public class MoneyCreator : MonoBehaviour
     [SerializeField] private FoodSellerView _foodSellerView;
     [SerializeField] private Money _moneyPrefab;
 
-    [Inject] private IEnumerable<MoneyCell> _moneyCells;
+    [Inject] private readonly IEnumerable<MoneyCell> _moneyCells;
 
     public event UnityAction<Vector3, Money> MoneyCreated;
 

@@ -7,7 +7,7 @@ public class PlayerData : MonoBehaviour
     [Inject] private SizeUpgradeButton _sizeUpgrade;
     [Inject] private CapacityUpgradeButton _capacityUpgrade;
 
-    public int PriceCapacity { get; private set; } = 15;
+    public int PriceCapacity { get; private set; } = 20;
     public float Size { get; private set; } = 1;
     public float Speed { get; private set; } = 1f;
 
