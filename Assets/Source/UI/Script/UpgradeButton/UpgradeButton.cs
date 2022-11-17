@@ -5,14 +5,14 @@ using Zenject;
 
 public abstract class UpgradeButton : MonoBehaviour
 {
-    [SerializeField] private Button _button;
+    [SerializeField] private UnityEngine.UI.Button _button;
 
     [Inject] private PlayerWallet _wallet;
 
     private int _price = 5;
     private int _currentLevel = 1;
 
-    public event UnityAction<int, int> ButtinInfoChanged;
+    public event UnityAction<int, int> ButtonInfoChanged;
 
     private void OnEnable()
     {
@@ -21,7 +21,7 @@ public abstract class UpgradeButton : MonoBehaviour
 
     private void Start()
     {
-        ButtinInfoChanged?.Invoke(_price, _currentLevel);
+        ButtonInfoChanged?.Invoke(_price, _currentLevel);
     }
 
     private void OnDisable()
@@ -45,6 +45,6 @@ public abstract class UpgradeButton : MonoBehaviour
     {
         _price++;
         _currentLevel++;
-        ButtinInfoChanged?.Invoke(_price, _currentLevel);
+        ButtonInfoChanged?.Invoke(_price, _currentLevel);
     }
 }

@@ -1503,6 +1503,7 @@ MonoBehaviour:
   - {fileID: 680376296078536143, guid: 8444471095f8d7f4aa6ba0509e9bda84, type: 3}
   - {fileID: 1707655756413044306, guid: f361613667184dc46af5b4ebf56568c3, type: 3}
   _foodParent: {fileID: 1419788365}
+  _button: {fileID: 1073678231}
 --- !u!1001 &889656614
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1866,6 +1867,7 @@ GameObject:
   - component: {fileID: 1073678230}
   - component: {fileID: 1073678229}
   - component: {fileID: 1073678228}
+  - component: {fileID: 1073678231}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -1976,6 +1978,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1073678226}
   m_CullTransparentMesh: 1
+--- !u!114 &1073678231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073678226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85611d8584016f046bc5437fb8fe34dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _button: {fileID: 1073678228}
 --- !u!1 &1091577851
 GameObject:
   m_ObjectHideFlags: 0

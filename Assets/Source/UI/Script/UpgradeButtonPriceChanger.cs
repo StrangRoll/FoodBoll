@@ -9,12 +9,12 @@ public class UpgradeButtonPriceChanger : MonoBehaviour
 
     private void OnEnable()
     {
-        _upgradeButton.ButtinInfoChanged += OnPriceChanged;
+        _upgradeButton.ButtonInfoChanged += OnPriceChanged;
     }
 
     private void OnDisable()
     {
-        _upgradeButton.ButtinInfoChanged -= OnPriceChanged;
+        _upgradeButton.ButtonInfoChanged -= OnPriceChanged;
     }
 
     private void OnPriceChanged(int price, int level)

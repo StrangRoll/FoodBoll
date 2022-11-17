@@ -19,7 +19,6 @@ public class NextLevelPlatform : MonoBehaviour, IPlatform
     {
         _generator.FoodGenerated += OnFoodGenerated;
         _pickuper.FoodPickedUp += OnFoodPickedUp;
-        _platformCanvas.enabled = false;
     }
 
     public void OnTriggerEnter(Collider collider)
@@ -42,6 +41,8 @@ public class NextLevelPlatform : MonoBehaviour, IPlatform
     private void OnFoodGenerated(int count)
     {
         _foodCount = count;
+        _platformCanvas.enabled = false;
+        PlayerLeft?.Invoke();
     }
 
     private void OnFoodPickedUp()

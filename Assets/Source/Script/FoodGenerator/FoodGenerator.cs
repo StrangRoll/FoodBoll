@@ -6,6 +6,7 @@ public class FoodGenerator : MonoBehaviour
 {
     [SerializeField] private Food[] _foodPrefabs;
     [SerializeField] private Transform _foodParent;
+    [SerializeField] private ButtonClickReader _button;
 
     [Inject (Id = ZenjectId.FoodPosition)] private readonly Vector2[] _startPositions;
     [Inject (Id = ZenjectId.FoodPosition)] private readonly Vector2 _blockDimensions;
@@ -15,10 +16,25 @@ public class FoodGenerator : MonoBehaviour
 
     public event UnityAction<int> FoodGenerated;
 
+    private void OnEnable()
+    {
+        _button.ButtonClicked += OnButtonClicked;
+    }
+
     private void Start()
     {
         _blockWidth = _blockDimensions.x;
         _blockHeight = _blockDimensions.y;
+        GenerateFood();
+    }
+
+    private void OnDisable()
+    {
+        _button.ButtonClicked -= OnButtonClicked;
+    }
+
+    private void OnButtonClicked()
+    {
         GenerateFood();
     }
 
