@@ -9,7 +9,8 @@ public abstract class UpgradeButton : MonoBehaviour
 
     [Inject] private PlayerWallet _wallet;
 
-    private int _price = 5;
+    private int _price = 75;
+    private int _priceIncrease = 25;
     private int _currentLevel = 1;
 
     public event UnityAction<int, int> ButtonInfoChanged;
@@ -43,7 +44,7 @@ public abstract class UpgradeButton : MonoBehaviour
 
     private void UpdateButtonInfo()
     {
-        _price++;
+        _price += _priceIncrease;
         _currentLevel++;
         ButtonInfoChanged?.Invoke(_price, _currentLevel);
     }

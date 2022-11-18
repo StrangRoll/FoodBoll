@@ -4,16 +4,11 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class Food : MonoBehaviour
 {
-    [SerializeField] private float _requiredSize;
     [SerializeField] private float _price;
     [SerializeField] private float _requiredSpace;
 
     private Collider _collider;
 
-    public float RequiredSize
-    {
-        get { return _requiredSize; }
-    }
     public float RequiredSpace
     {
         get { return _requiredSpace; }

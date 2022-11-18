@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
 
     public bool TryPickUpFood(Food food)
     {
-        if (food.RequiredSize <= _data.Size && _currentPrice + food.Price <= _data.PriceCapacity)
+        if (_currentPrice < _data.PriceCapacity)
         {
             ChangeCurrentPrice(food.Price);
             _food.Enqueue(food);
@@ -74,8 +74,11 @@ public class Player : MonoBehaviour
 
         _currentPrice += deltaPrice;
 
-        if (_currentPrice < 0 || _currentPrice > _data.PriceCapacity)
-            Debug.LogError($"Incorrent player's current price! Current value = {_currentPrice}");
+        if (_currentPrice < 0)
+            _currentPrice = 0;
+
+        if (_currentPrice > _data.PriceCapacity)
+            _currentPrice = _data.PriceCapacity;
 
         if (_currentPrice == _data.PriceCapacity)
             PlayerFull?.Invoke();
