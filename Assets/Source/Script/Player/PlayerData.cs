@@ -3,13 +3,17 @@ using Zenject;
 
 public class PlayerData : MonoBehaviour
 {
+    [SerializeField] private int _priceCapacity;
+    [SerializeField] private float _size;
+    [SerializeField] private float _speed;
+
     [Inject] private SpeedUpgradeButton _speedUpgrade;
     [Inject] private SizeUpgradeButton _sizeUpgrade;
     [Inject] private CapacityUpgradeButton _capacityUpgrade;
 
-    public int PriceCapacity { get; private set; } = 20;
-    public float Size { get; private set; } = 1;
-    public float Speed { get; private set; } = 1f;
+    public int PriceCapacity { get { return _priceCapacity; } }
+    public float Size { get { return _size; } }
+    public float Speed { get { return _speed; } }
 
     private void OnEnable()
     {
@@ -27,16 +31,16 @@ public class PlayerData : MonoBehaviour
 
     private void OnSpeedIncreased(float deltaSpeed)
     {
-        Speed += deltaSpeed;
+        _speed += deltaSpeed;
     }
 
     private void OnSizeIncreased(float deltaSize)
     {
-        Size += deltaSize;
+        _size += deltaSize;
     }
 
     private void OnCapacityIncreased(int deltaCapacity)
     {
-        PriceCapacity += deltaCapacity;
+        _priceCapacity += deltaCapacity;
     }
 }
