@@ -6,7 +6,7 @@ public class PlayerWallet : MonoBehaviour
 {
     [Inject] private MoneyPickuper _pickuper;
 
-    private int _money = 10000;
+    private int _money = 0;
     private int _reservedMoney = 0;
     private int _oneDollarCount = 1;
 
