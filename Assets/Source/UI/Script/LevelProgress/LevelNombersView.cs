@@ -5,7 +5,7 @@ public class LevelNombersView : MonoBehaviour
 {
     [SerializeField] private TMP_Text _currentLevelText;
     [SerializeField] private TMP_Text _nextLevelText;
-    [SerializeField] private LevelProgressBar _progressBar;
+    [SerializeField] private LevelProgress _progressBar;
 
     private void OnEnable()
     {

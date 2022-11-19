@@ -55,7 +55,7 @@ public class FoodGenerator : MonoBehaviour
                 for (int j = 0; j < foodInColumn; j++)
                 {
                     var xFoodPosition = position.x + food.RequiredSpace * i + halfSpace;
-                    var zFoodPosition = position.y - food.RequiredSpace * j + halfSpace;
+                    var zFoodPosition = position.y - food.RequiredSpace * j - halfSpace;
                     var foodPosition = new Vector3(xFoodPosition, food.transform.position.y, zFoodPosition);
                     Instantiate(food, foodPosition, food.transform.rotation, _foodParent);
                     foodCount++;

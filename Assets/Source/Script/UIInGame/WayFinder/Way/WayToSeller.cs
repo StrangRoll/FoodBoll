@@ -1,12 +1,9 @@
 using UnityEngine;
-using UnityEngine.UI;
 using Zenject;
 
-public class WayFinderActivator : MonoBehaviour
+public class WayToSeller : MonoBehaviour
 {
-    [SerializeField] private RawImage _wayImage;
-    [SerializeField] private WayFinderUpdator _updator;
-    [SerializeField] private WayFinderAnimation _animation;
+    [SerializeField] private WayFinderActivator _activator;
 
     [Inject] private Player _player;
 
@@ -29,15 +26,11 @@ public class WayFinderActivator : MonoBehaviour
 
     private void OnPlayerFull()
     {
-        _wayImage.enabled = true;
-        _updator.enabled = true;
-        _animation.enabled = true;
+        _activator.Activate();
     }
 
     private void OnPlayerNotFullMore()
     {
-        _wayImage.enabled = false;
-        _updator.enabled = false;
-        _animation.enabled = false;
+        _activator.Deactivate();
     }
 }

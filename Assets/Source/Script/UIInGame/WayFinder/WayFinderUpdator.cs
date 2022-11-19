@@ -8,15 +8,15 @@ public class WayFinderUpdator : MonoBehaviour
     [Inject] private SphereMovier _sphere;
 
     [SerializeField] private RawImage _wayImage;
-    [SerializeField] private FoodSeller _foodSeller;
+    [SerializeField] private Transform _target;
 
-    private Vector3 _sellerPosition;
+    private Vector3 _targetPosition;
     private Quaternion _startRotation;
     private float _imageHeight;
 
     private void Awake()
     {
-        _sellerPosition = _foodSeller.transform.position;
+        _targetPosition = _target.position;
         _imageHeight = _wayImage.GetComponent<RectTransform>().sizeDelta.y;
         Quaternion myRotation = Quaternion.identity;
         _startRotation = _wayImage.transform.localRotation;
@@ -34,7 +34,7 @@ public class WayFinderUpdator : MonoBehaviour
     {
         Vector3 wayImagePosition = new Vector3(_sphere.transform.position.x, _wayImage.transform.position.y, _sphere.transform.position.z);
         _wayImage.transform.position = wayImagePosition;
-        Vector3 way = _sellerPosition - wayImagePosition;
+        Vector3 way = _targetPosition - wayImagePosition;
         return way;
     }
 

@@ -7,9 +7,8 @@ public class NextLevelPlatform : MonoBehaviour, IPlatform
     [SerializeField] private Canvas _platformCanvas;
 
     [Inject] private FoodGenerator _generator;
-    [Inject] private FoodPickuper _pickuper;
+    [Inject] private LevelProgress _progress;
 
-    private int _foodCount;
     private bool _isAllFoodPickedUp = false;
 
     public event UnityAction PlayerEntered;
@@ -18,7 +17,7 @@ public class NextLevelPlatform : MonoBehaviour, IPlatform
     private void OnEnable()
     {
         _generator.FoodGenerated += OnFoodGenerated;
-        _pickuper.FoodPickedUp += OnFoodPickedUp;
+        _progress.AllFoodPickedUp += OnAllFoodPickedUp;
     }
 
     public void OnTriggerEnter(Collider collider)
@@ -35,27 +34,19 @@ public class NextLevelPlatform : MonoBehaviour, IPlatform
     private void OnDisable()
     {
         _generator.FoodGenerated -= OnFoodGenerated;
-        _pickuper.FoodPickedUp -= OnFoodPickedUp;
+        _progress.AllFoodPickedUp -= OnAllFoodPickedUp;
     }
 
     private void OnFoodGenerated(int count)
     {
-        _foodCount = count;
+        _isAllFoodPickedUp = false;
         _platformCanvas.enabled = false;
         PlayerLeft?.Invoke();
     }
 
-    private void OnFoodPickedUp()
+    private void OnAllFoodPickedUp()
     {
-        _foodCount--;
-
-        if (_foodCount == 0)
-        {
-            _isAllFoodPickedUp = true;
-            _platformCanvas.enabled = true;
-        }
-
-        if (_foodCount < 0)
-            Debug.LogError("Leftover food count less than zero");
+        _isAllFoodPickedUp = true;
+        _platformCanvas.enabled = true;
     }
 }

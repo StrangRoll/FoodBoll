@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using Zenject;
 
-public class LevelProgressBar : MonoBehaviour, ISliderCountChanger
+public class LevelProgress : MonoBehaviour, ISliderCountChanger
 {
     [Inject] private FoodGenerator _generator;
     [Inject] private FoodPickuper _pickuper;
@@ -13,6 +13,7 @@ public class LevelProgressBar : MonoBehaviour, ISliderCountChanger
 
     public event UnityAction<int, int> SliderCountChanged;
     public event UnityAction<int, int> LevelChanged;
+    public event UnityAction AllFoodPickedUp;
 
     private void OnEnable()
     {
@@ -39,5 +40,8 @@ public class LevelProgressBar : MonoBehaviour, ISliderCountChanger
     {
         _pickedUpFoodCount++;
         SliderCountChanged?.Invoke(_pickedUpFoodCount, _allFoodCount);
+
+        if (_pickedUpFoodCount >= _allFoodCount)
+            AllFoodPickedUp?.Invoke();
     }
 }
