@@ -46,15 +46,16 @@ public class FoodGenerator : MonoBehaviour
         {
             var foodIndex = Random.Range(0, _foodPrefabs.Length);
             var food = _foodPrefabs[foodIndex];
-            var foodInLine = (int)(_blockWidth / food.RequiredSpace);
-            var foodInColumn = (int)(_blockHeight / food.RequiredSpace);
+            var foodInLine = (int)(_blockWidth / food.RequiredSpace) - 1;
+            var foodInColumn = (int)(_blockHeight / food.RequiredSpace) - 1;
+            var halfSpace = food.RequiredSpace / 2;
 
             for (int i = 0; i < foodInLine; i++)
             {
                 for (int j = 0; j < foodInColumn; j++)
                 {
-                    var xFoodPosition = position.x + food.RequiredSpace * i;
-                    var zFoodPosition = position.y - food.RequiredSpace * j;
+                    var xFoodPosition = position.x + food.RequiredSpace * i + halfSpace;
+                    var zFoodPosition = position.y - food.RequiredSpace * j + halfSpace;
                     var foodPosition = new Vector3(xFoodPosition, food.transform.position.y, zFoodPosition);
                     Instantiate(food, foodPosition, food.transform.rotation, _foodParent);
                     foodCount++;
