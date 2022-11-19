@@ -190,7 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _wayImage: {fileID: 7560189475239947281}
-  _updator: {fileID: 7560189475599568729}
+  _updater: {fileID: 7560189475599568729}
   _animation: {fileID: 7560189475599568728}
 --- !u!114 &7560189475599568729
 MonoBehaviour:

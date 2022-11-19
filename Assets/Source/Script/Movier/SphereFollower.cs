@@ -10,10 +10,12 @@ public class SphereFollower : MonoBehaviour
     private void Awake()
     {
         _deltaPosition = transform.position - _sphere.transform.position;
+        _deltaPosition.y = 0;
     }
 
     private void LateUpdate()
     {
-        transform.position = _sphere.transform.position + _deltaPosition;
+        var newPosition = new Vector3(_sphere.transform.position.x, transform.position.y, _sphere.transform.position.z);
+        transform.position = newPosition + _deltaPosition;
     }
 }

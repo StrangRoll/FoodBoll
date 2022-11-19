@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-public class WayFinderUpdator : MonoBehaviour
+public class WayFinderUpdater : MonoBehaviour
 {
     [Inject] private SphereMovier _sphere;
 

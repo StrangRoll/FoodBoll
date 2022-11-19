@@ -596,6 +596,10 @@ PrefabInstance:
       propertyPath: _target
       value: 
       objectReference: {fileID: 946873014}
+    - target: {fileID: 7560189475599568733, guid: fc8044fe702ae844784329070fa7c1c5, type: 3}
+      propertyPath: _updater
+      value: 
+      objectReference: {fileID: 328696474}
     - target: {fileID: 7560189475599568800, guid: fc8044fe702ae844784329070fa7c1c5, type: 3}
       propertyPath: m_Name
       value: WayToNextLevel
@@ -720,6 +724,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _activator: {fileID: 328696471}
+--- !u!114 &328696474 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7560189475599568729, guid: fc8044fe702ae844784329070fa7c1c5, type: 3}
+  m_PrefabInstance: {fileID: 328696468}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328696470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f9e050b498c81e47bd4b931ab1d8164, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &335502393 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7354815545804770432, guid: 95e1032c57a7d2c4f813e9cc4cd4a998, type: 3}
@@ -3355,6 +3370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _occupancyRateImage: {fileID: 823331130}
+  _iamgeRectTransform: {fileID: 823331129}
 --- !u!1 &1418317443 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7354815545804770432, guid: 95e1032c57a7d2c4f813e9cc4cd4a998, type: 3}
@@ -3831,6 +3847,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e41156aa9cc80b4db7fad85aeaab04e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1643586692 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7560189475599568729, guid: fc8044fe702ae844784329070fa7c1c5, type: 3}
+  m_PrefabInstance: {fileID: 7560189476110429149}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1643586685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f9e050b498c81e47bd4b931ab1d8164, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1643586694
@@ -5449,6 +5476,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _messageImage: {fileID: 1215073677}
   _messageText: {fileID: 676634156}
+  _rectTransform: {fileID: 2059588149}
 --- !u!1 &2113721403
 GameObject:
   m_ObjectHideFlags: 0
@@ -6165,6 +6193,10 @@ PrefabInstance:
       propertyPath: _foodSeller
       value: 
       objectReference: {fileID: 1661934959}
+    - target: {fileID: 7560189475599568733, guid: fc8044fe702ae844784329070fa7c1c5, type: 3}
+      propertyPath: _updater
+      value: 
+      objectReference: {fileID: 1643586692}
     - target: {fileID: 7560189475599568800, guid: fc8044fe702ae844784329070fa7c1c5, type: 3}
       propertyPath: m_Name
       value: WayToSeller
