@@ -5,7 +5,7 @@ using Zenject;
 
 public abstract class UpgradeButton : MonoBehaviour
 {
-    [SerializeField] private UnityEngine.UI.Button _button;
+    [SerializeField] private Button _button;
 
     [Inject] private PlayerWallet _wallet;
 
