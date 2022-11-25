@@ -2,6 +2,7 @@ using Agava.YandexGames;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 public class PlayerDataSaver : MonoBehaviour
@@ -21,11 +22,6 @@ public class PlayerDataSaver : MonoBehaviour
         _playerData.Add(PlayerDataKey.SpeedButton, 1);
         _playerData.Add(PlayerDataKey.SizeButton, 1);
         _playerData.Add(PlayerDataKey.CapacityButton, 1);
-    }
-
-    private bool CheckSymbol(char symbol)
-    {
-        return (symbol != '"' && symbol != '{' && symbol != '}' && symbol != ' ');
     }
 
     private void OnEnable()

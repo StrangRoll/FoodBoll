@@ -13,7 +13,9 @@ public class PlayerDataLoader : MonoBehaviour
     public event UnityAction<int> CapacityButtonLevelLoaded;
     public event UnityAction AllDataSent;
 
-    private void Awake()
+    private Dictionary<string, int> _playerData = new Dictionary<string, int>();
+
+    private void Start()
     {
 #if UNITY_WEBGL && !UNITY_EDITOR
         StartCoroutine(LoadProgress());
@@ -25,46 +27,52 @@ public class PlayerDataLoader : MonoBehaviour
         yield return YandexGamesSdk.Initialize();
 
         if (PlayerAccount.IsAuthorized)
+            PlayerAccount.GetPlayerData((data) => PlayerDataHandler(data));
+    }
+
+    private void PlayerDataHandler(string playerData)
+    {
+        if (string.IsNullOrEmpty(playerData))
         {
-            string playerDataString = null;
-            PlayerAccount.GetPlayerData((data) => playerDataString = data);
-
-            Dictionary<string, int> playerData;
-
-            if (playerDataString == null)
-            {
-                playerData = new Dictionary<string, int>();
-                playerData.Add(PlayerDataKey.LevelNomber, 1);
-                playerData.Add(PlayerDataKey.SpeedButton, 1);
-                playerData.Add(PlayerDataKey.SizeButton, 1);
-                playerData.Add(PlayerDataKey.CapacityButton, 1);
-            }
-            else
-            {
-                playerData = new Dictionary<string, int>();
-                string dataString = new string(playerDataString.Where(symbol => CheckSymbol(symbol)).ToArray());
-                string[] dataPairs = dataString.Split(",");
-
-                foreach (var pair in dataPairs)
-                {
-                    var data = pair.Split(":");
-
-                    if (int.TryParse(data[1], out int valume) == false)
-                    {
-                        valume = 1;
-                    }
-
-                    playerData.Add(data[0], valume);
-                }
-            }
-
-            LevelNomberLoaded?.Invoke(playerData[PlayerDataKey.LevelNomber]);
-            SpeedButtonLevelLoaded?.Invoke(playerData[PlayerDataKey.SpeedButton]);
-            SizeButtonLevelLoaded?.Invoke(playerData[PlayerDataKey.SizeButton]);
-            CapacityButtonLevelLoaded?.Invoke(playerData[PlayerDataKey.CapacityButton]);
-
-            AllDataSent?.Invoke();
+            StandartStart(playerData);
+            return;
         }
+
+        string dataString = new string(playerData.Where(symbol => CheckSymbol(symbol)).ToArray());
+        string[] dataPairs = dataString.Split(",");
+
+        foreach (var pair in dataPairs)
+        {
+            var data = pair.Split(":");
+
+            if (int.TryParse(data[1], out int valume) == false)
+            {
+                valume = 1;
+            }
+
+            _playerData.Add(data[0], valume);
+        }
+
+        SendAllEvents();
+    }
+
+    private void StandartStart(string data)
+    {
+        _playerData.Add(PlayerDataKey.LevelNomber, 1);
+        _playerData.Add(PlayerDataKey.SpeedButton, 1);
+        _playerData.Add(PlayerDataKey.SizeButton, 1);
+        _playerData.Add(PlayerDataKey.CapacityButton, 1);
+        SendAllEvents();
+    }
+
+    private void SendAllEvents()
+    {
+        LevelNomberLoaded?.Invoke(_playerData[PlayerDataKey.LevelNomber]);
+        SpeedButtonLevelLoaded?.Invoke(_playerData[PlayerDataKey.SpeedButton]);
+        SizeButtonLevelLoaded?.Invoke(_playerData[PlayerDataKey.SizeButton]);
+        CapacityButtonLevelLoaded?.Invoke(_playerData[PlayerDataKey.CapacityButton]);
+
+        AllDataSent?.Invoke();
     }
 
     private bool CheckSymbol(char symbol)
