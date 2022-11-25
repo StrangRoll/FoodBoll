@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _price: 1
-  _requiredSpace: 0.75
+  _requiredSpace: 0.95
 --- !u!1 &4186794961311187627
 GameObject:
   m_ObjectHideFlags: 0

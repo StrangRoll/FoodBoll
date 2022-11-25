@@ -16,6 +16,6 @@ public class Money : MonoBehaviour
     public void DestroyMoney()
     {
         MoneyRemoved?.Invoke();
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }
