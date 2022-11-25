@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using Zenject;
 using System.Linq;
+using NTC.Global.Pool;
 
 public class MoneyCreator : MonoBehaviour
 {
@@ -11,21 +12,7 @@ public class MoneyCreator : MonoBehaviour
 
     [Inject] private readonly IEnumerable<MoneyCell> _moneyCells;
 
-    private Money[] _money;
-
     public event UnityAction<Vector3, Money> MoneyCreated;
-
-    private void Awake()
-    {
-        _money = new Money[_moneyCells.Count()];
-
-        for (int i = 0; i < _moneyCells.Count(); i++)
-        {
-            var newMoney = Instantiate(_moneyPrefab);
-            _money[i] = newMoney;
-            newMoney.gameObject.SetActive(false);
-        }
-    }
 
     private void OnEnable()
     {
@@ -45,14 +32,11 @@ public class MoneyCreator : MonoBehaviour
 
             if (moneyCell != null)
             {
-                var newMoney = _money.FirstOrDefault(money => money.gameObject.activeSelf == false);
+                var newMoney = NightPool.Spawn(_moneyPrefab);
 
-                if (newMoney != null)
-                {
-                    newMoney.gameObject.SetActive(true);
-                    var moneyPosition = moneyCell.GetPositionAndAddMoney(newMoney);
-                    MoneyCreated?.Invoke(moneyPosition, newMoney);
-                }
+                var moneyPosition = moneyCell.GetPositionAndAddMoney(newMoney);
+                MoneyCreated?.Invoke(moneyPosition, newMoney);
+
             }
         }
     }

@@ -1,3 +1,4 @@
+using NTC.Global.Pool;
 using UnityEngine;
 using UnityEngine.Events;
 using Zenject;
@@ -57,7 +58,8 @@ public class FoodGenerator : MonoBehaviour
                     var xFoodPosition = position.x + food.RequiredSpace * i + halfSpace;
                     var zFoodPosition = position.y - food.RequiredSpace * j - halfSpace;
                     var foodPosition = new Vector3(xFoodPosition, food.transform.position.y, zFoodPosition);
-                    Instantiate(food, foodPosition, food.transform.rotation, _foodParent);
+                    var newFood = NightPool.Spawn(food, foodPosition, food.transform.rotation);
+                    newFood.transform.parent = _foodParent;
                     foodCount++;
                 }
             }

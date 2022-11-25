@@ -2,6 +2,7 @@ using UnityEngine;
 using Zenject;
 using DG.Tweening;
 using UnityEngine.Events;
+using NTC.Global.Pool;
 
 public class FoodSellerView : MonoBehaviour
 {
@@ -35,7 +36,7 @@ public class FoodSellerView : MonoBehaviour
     private void OnAnimationCompelte(Food food)
     {
         var price = food.Price;
-        Destroy(food.gameObject);
+        NightPool.Despawn(food);
         FoodSell?.Invoke(food.Price);
     }
 }

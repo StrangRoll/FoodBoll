@@ -11,10 +11,10 @@ public class VideoAdd : MonoBehaviour
     [Inject] private SpeedUpgradeButton _speedUpgrade;
     [Inject] private CapacityUpgradeButton _capacityUpgrade;
 
-    public event UnityAction<int> VideoAdShowed;
+    public event UnityAction<int> VideoAddShowed;
 
     private void OnEnable()
-    {
+    {   
         _rewardButton.ButtonClicked += OnButtonClicked;
     }
 
@@ -29,8 +29,7 @@ public class VideoAdd : MonoBehaviour
 #if UNITY_WEBGL && !UNITY_EDITOR
         VideoAd.Show();
         var addedMoney = (int)((_sizeUpgrade.Price + _speedUpgrade.Price + _capacityUpgrade.Price) / 3 * 1.5f);
-        VideoAdShowed?.Invoke(addedMoney);
+        VideoAddShowed?.Invoke(addedMoney);
 #endif
-
     }
 }
