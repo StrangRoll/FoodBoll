@@ -6,6 +6,7 @@ public class LevelProgress : MonoBehaviour, ISliderCountChanger
 {
     [Inject] private FoodGenerator _generator;
     [Inject] private FoodPickuper _pickuper;
+    [Inject] private PlayerDataLoader _saveLoader;
 
     private int _pickedUpFoodCount;
     private int _allFoodCount;
@@ -19,12 +20,20 @@ public class LevelProgress : MonoBehaviour, ISliderCountChanger
     {
         _generator.FoodGenerated += OnFoodGenerated;
         _pickuper.FoodPickedUp += OnFoodPickedUp;
+        _saveLoader.LevelNomberLoaded += OnLevelNomberLoaded;
     }
 
     private void OnDisable()
     {
         _generator.FoodGenerated -= OnFoodGenerated;
         _pickuper.FoodPickedUp -= OnFoodPickedUp;
+        _saveLoader.LevelNomberLoaded -= OnLevelNomberLoaded;
+    }
+
+    private void OnLevelNomberLoaded(int levelNomber)
+    {
+        _currentLevel = levelNomber;
+        LevelChanged?.Invoke(levelNomber, levelNomber + 1);
     }
 
     private void OnFoodGenerated(int count)

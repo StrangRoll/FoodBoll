@@ -16,7 +16,7 @@ public abstract class UpgradeButton : MonoBehaviour
 
     public int Price { get; private set; } = 75;
 
-    private void OnEnable()
+    protected void OnEnable()
     {
         _button.onClick.AddListener(OnButtonClicked);
     }
@@ -26,12 +26,19 @@ public abstract class UpgradeButton : MonoBehaviour
         ButtonInfoChanged?.Invoke(Price, _currentLevel);
     }
 
-    private void OnDisable()
+    protected void OnDisable()
     {
         _button.onClick.RemoveListener(OnButtonClicked);
     }
 
     protected abstract void GetUpgrade();
+
+    protected void UpdateButtonInfo()
+    {
+        Price += _priceIncrease;
+        _currentLevel++;
+        ButtonInfoChanged?.Invoke(Price, _currentLevel);
+    }
 
     private void OnButtonClicked()
     {
@@ -41,12 +48,5 @@ public abstract class UpgradeButton : MonoBehaviour
             GetUpgrade();
             UpdateButtonInfo();
         }
-    }
-
-    private void UpdateButtonInfo()
-    {
-        Price += _priceIncrease;
-        _currentLevel++;
-        ButtonInfoChanged?.Invoke(Price, _currentLevel);
     }
 }

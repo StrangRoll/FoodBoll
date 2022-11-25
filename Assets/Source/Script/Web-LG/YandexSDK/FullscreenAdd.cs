@@ -7,7 +7,7 @@ public class FullscreenAdd : MonoBehaviour
 {
     [SerializeField] private ButtonClickReader _nextLevelButton;
 
-    void Awake()
+    private void Awake()
     {
 #if UNITY_WEBGL && !UNITY_EDITOR
         StartCoroutine(ShowStartAdd());
