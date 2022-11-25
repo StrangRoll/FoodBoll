@@ -10,7 +10,7 @@ public class FullscreenAdd : MonoBehaviour
     void Awake()
     {
 #if UNITY_WEBGL && !UNITY_EDITOR
-StartCoroutine(ShowStartAdd());
+        StartCoroutine(ShowStartAdd());
 #endif
     }
 
