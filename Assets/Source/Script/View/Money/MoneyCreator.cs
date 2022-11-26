@@ -12,7 +12,14 @@ public class MoneyCreator : MonoBehaviour
 
     [Inject] private readonly IEnumerable<MoneyCell> _moneyCells;
 
+    private Quaternion _moneyRotation;
+
     public event UnityAction<Vector3, Money> MoneyCreated;
+
+    private void Awake()
+    {
+        _moneyRotation = _moneyPrefab.transform.rotation;
+    }
 
     private void OnEnable()
     {
@@ -32,7 +39,7 @@ public class MoneyCreator : MonoBehaviour
 
             if (moneyCell != null)
             {
-                var newMoney = NightPool.Spawn(_moneyPrefab);
+                var newMoney = NightPool.Spawn(_moneyPrefab, Vector3.zero, _moneyRotation);
 
                 var moneyPosition = moneyCell.GetPositionAndAddMoney(newMoney);
                 MoneyCreated?.Invoke(moneyPosition, newMoney);

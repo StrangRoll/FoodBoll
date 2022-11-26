@@ -4,4 +4,5 @@ public static class PlayerDataKey
     public const string SpeedButton = "speed";
     public const string SizeButton = "size";
     public const string CapacityButton = "capacity";
+    public const string Money = "money";
 }

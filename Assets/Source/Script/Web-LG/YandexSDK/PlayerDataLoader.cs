@@ -4,13 +4,17 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class PlayerDataLoader : MonoBehaviour
 {
+    [SerializeField] private Text _textField;
+
     public event UnityAction<int> LevelNomberLoaded;
     public event UnityAction<int> SpeedButtonLevelLoaded;
     public event UnityAction<int> SizeButtonLevelLoaded;
     public event UnityAction<int> CapacityButtonLevelLoaded;
+    public event UnityAction<int> MoneyCountLoaded;
     public event UnityAction AllDataSent;
 
     private Dictionary<string, int> _playerData = new Dictionary<string, int>();
@@ -26,15 +30,19 @@ public class PlayerDataLoader : MonoBehaviour
     {
         yield return YandexGamesSdk.Initialize();
 
+        PlayerAccount.Authorize();
+
         if (PlayerAccount.IsAuthorized)
             PlayerAccount.GetPlayerData((data) => PlayerDataHandler(data));
     }
 
     private void PlayerDataHandler(string playerData)
     {
+        _textField.text = playerData;
+
         if (string.IsNullOrEmpty(playerData))
         {
-            StandartStart(playerData);
+            StandartStart();
             return;
         }
 
@@ -56,12 +64,13 @@ public class PlayerDataLoader : MonoBehaviour
         SendAllEvents();
     }
 
-    private void StandartStart(string data)
+    private void StandartStart()
     {
         _playerData.Add(PlayerDataKey.LevelNomber, 1);
         _playerData.Add(PlayerDataKey.SpeedButton, 1);
         _playerData.Add(PlayerDataKey.SizeButton, 1);
         _playerData.Add(PlayerDataKey.CapacityButton, 1);
+        _playerData.Add(PlayerDataKey.Money, 122);
         SendAllEvents();
     }
 
@@ -71,6 +80,7 @@ public class PlayerDataLoader : MonoBehaviour
         SpeedButtonLevelLoaded?.Invoke(_playerData[PlayerDataKey.SpeedButton]);
         SizeButtonLevelLoaded?.Invoke(_playerData[PlayerDataKey.SizeButton]);
         CapacityButtonLevelLoaded?.Invoke(_playerData[PlayerDataKey.CapacityButton]);
+        MoneyCountLoaded?.Invoke(_playerData[PlayerDataKey.Money]);
 
         AllDataSent?.Invoke();
     }

@@ -1,4 +1,5 @@
 using Agava.YandexGames;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -11,10 +12,13 @@ public class PlayerDataSaver : MonoBehaviour
     [Inject] private SizeUpgradeButton _sizeButton;
     [Inject] private SpeedUpgradeButton _speedButton;
     [Inject] private CapacityUpgradeButton _capacityButton;
+    [Inject] private PlayerWallet _wallet;
     [Inject] private PlayerDataLoader _loader;
 
     private Dictionary<string, int> _playerData = new Dictionary<string, int>();
     private bool _allDataSent = false;
+    private Coroutine _moneyCoroutine;
+    private WaitForSeconds _waitFewSecond = new WaitForSeconds(1);
 
     private void Awake()
     {
@@ -22,6 +26,7 @@ public class PlayerDataSaver : MonoBehaviour
         _playerData.Add(PlayerDataKey.SpeedButton, 1);
         _playerData.Add(PlayerDataKey.SizeButton, 1);
         _playerData.Add(PlayerDataKey.CapacityButton, 1);
+        _playerData.Add(PlayerDataKey.Money, 0);
     }
 
     private void OnEnable()
@@ -30,6 +35,7 @@ public class PlayerDataSaver : MonoBehaviour
         _speedButton.SpeedIncreased += OnSpeedIncreased;
         _sizeButton.SizeIncreased += OnSizeIncreased;
         _capacityButton.CapacityIncreased += OnCapacityIncreased;
+        _wallet.MoneyCountChanged += OnMoneyCountChanged;
         _loader.AllDataSent += OnAllDataSent;
     }
 
@@ -66,9 +72,26 @@ public class PlayerDataSaver : MonoBehaviour
         SaveData();
     }
 
+    private void OnMoneyCountChanged(int money)
+    {
+        _playerData[PlayerDataKey.Money] = money;
+
+        if (_moneyCoroutine != null)
+            StopCoroutine(_moneyCoroutine);
+
+        _moneyCoroutine = StartCoroutine(MoneyWaiting());
+    }
+
     private void OnAllDataSent()
     {
         _allDataSent = true;
+    }
+
+    private IEnumerator MoneyWaiting()
+    {
+        yield return _waitFewSecond;
+        SaveData();
+        _moneyCoroutine = null;
     }
 
     private void SaveData()

@@ -1,3 +1,4 @@
+using NTC.Global.Pool;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -16,6 +17,6 @@ public class Money : MonoBehaviour
     public void DestroyMoney()
     {
         MoneyRemoved?.Invoke();
-        gameObject.SetActive(false);
+        NightPool.Despawn(this);
     }
 }

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolName: Game
   poolItems:
-  - prefab: {fileID: 6754504229613998217, guid: 8b261de5c88c98349953ff656a154234, type: 3}
+  - prefab: {fileID: 5535454727205680518, guid: 73995b3f109a2c348a88d4898025cc8e, type: 3}
     size: 315
   - prefab: {fileID: 7996033894755219227, guid: 417fe1cc54bd6eb429eb73e247744c6f, type: 3}
     size: 200
@@ -27,8 +27,8 @@ MonoBehaviour:
   - prefab: {fileID: 5156791744737808444, guid: f24ab973d182d5945aa6a1d18a33d921, type: 3}
     size: 200
   - prefab: {fileID: 8711912442926537748, guid: ffa6b3da63a2c8c41af6cd398e39530c, type: 3}
-    size: 200
+    size: 250
   - prefab: {fileID: 6892175661775904260, guid: b014560d6f7884b4a85293a6895e123b, type: 3}
-    size: 200
+    size: 150
   - prefab: {fileID: 7586766233393908432, guid: e0910495ee02a9c46b878622b7c2e87d, type: 3}
     size: 200
