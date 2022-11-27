@@ -4,18 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
 
 public class PlayerDataLoader : MonoBehaviour
 {
-    [SerializeField] private Text _textField;
-
     public event UnityAction<int> LevelNomberLoaded;
     public event UnityAction<int> SpeedButtonLevelLoaded;
     public event UnityAction<int> SizeButtonLevelLoaded;
     public event UnityAction<int> CapacityButtonLevelLoaded;
     public event UnityAction<int> MoneyCountLoaded;
-    public event UnityAction AllDataSent;
 
     private Dictionary<string, int> _playerData = new Dictionary<string, int>();
 
@@ -38,8 +34,6 @@ public class PlayerDataLoader : MonoBehaviour
 
     private void PlayerDataHandler(string playerData)
     {
-        _textField.text = playerData;
-
         if (string.IsNullOrEmpty(playerData))
         {
             StandartStart();
@@ -81,8 +75,6 @@ public class PlayerDataLoader : MonoBehaviour
         SizeButtonLevelLoaded?.Invoke(_playerData[PlayerDataKey.SizeButton]);
         CapacityButtonLevelLoaded?.Invoke(_playerData[PlayerDataKey.CapacityButton]);
         MoneyCountLoaded?.Invoke(_playerData[PlayerDataKey.Money]);
-
-        AllDataSent?.Invoke();
     }
 
     private bool CheckSymbol(char symbol)

@@ -16,19 +16,3 @@ MonoBehaviour:
   poolItems:
   - prefab: {fileID: 5535454727205680518, guid: 73995b3f109a2c348a88d4898025cc8e, type: 3}
     size: 315
-  - prefab: {fileID: 7996033894755219227, guid: 417fe1cc54bd6eb429eb73e247744c6f, type: 3}
-    size: 200
-  - prefab: {fileID: 7388891124721399109, guid: 0306c06dc46230e429167686797844c8, type: 3}
-    size: 200
-  - prefab: {fileID: 881635019391873452, guid: 5756fbfc7503d254fad6f5b550069ecb, type: 3}
-    size: 200
-  - prefab: {fileID: 2216069470949558406, guid: d6fd61c6a5414fd4b9078fad86e9c00e, type: 3}
-    size: 200
-  - prefab: {fileID: 5156791744737808444, guid: f24ab973d182d5945aa6a1d18a33d921, type: 3}
-    size: 200
-  - prefab: {fileID: 8711912442926537748, guid: ffa6b3da63a2c8c41af6cd398e39530c, type: 3}
-    size: 250
-  - prefab: {fileID: 6892175661775904260, guid: b014560d6f7884b4a85293a6895e123b, type: 3}
-    size: 150
-  - prefab: {fileID: 7586766233393908432, guid: e0910495ee02a9c46b878622b7c2e87d, type: 3}
-    size: 200
