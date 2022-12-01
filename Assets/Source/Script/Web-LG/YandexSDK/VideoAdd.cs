@@ -13,6 +13,14 @@ public class VideoAdd : MonoBehaviour
 
     public event UnityAction<int> VideoAddShowed;
 
+    public int AddedMoney
+    {
+        get
+        {
+            return (int)((_sizeUpgrade.Price + _speedUpgrade.Price + _capacityUpgrade.Price) / 3 * 1.5f);
+        }
+    }
+
     private void OnEnable()
     {   
         _rewardButton.ButtonClicked += OnButtonClicked;
@@ -27,9 +35,18 @@ public class VideoAdd : MonoBehaviour
     private void OnButtonClicked()
     {
 #if UNITY_WEBGL && !UNITY_EDITOR
-        VideoAd.Show();
-        var addedMoney = (int)((_sizeUpgrade.Price + _speedUpgrade.Price + _capacityUpgrade.Price) / 3 * 1.5f);
-        VideoAddShowed?.Invoke(addedMoney);
+        VideoAd.Show(() => OnVideoStart(), () => OnRewardGot());
 #endif
+
+#if UNITY_EDITOR
+        OnRewardGot();
+#endif
+    }
+
+    private void OnVideoStart() { }
+
+    private void OnRewardGot()
+    {
+        VideoAddShowed?.Invoke(AddedMoney);
     }
 }

@@ -16,6 +16,23 @@ public class UpgradeButtonSizeChanger : MonoBehaviour
 
     private void Awake()
     {
+        Vector2 buttonSize;
+
+        switch (_phone)
+        {
+            case _phone:
+                buttonSize = new Vector2(_phoneWidth, _phoneHeight);
+                _buttonRect.sizeDelta = buttonSize;
+                break;
+            case _desctop:
+                buttonSize = new Vector2(_pcWidth, _pcHeight);
+                _buttonRect.sizeDelta = buttonSize;
+                break;
+            default:
+                buttonSize = new Vector2(_phoneWidth, _phoneHeight);
+                _buttonRect.sizeDelta = buttonSize;
+                break;
+        }
 #if UNITY_WEBGL && !UNITY_EDITOR
 StartCoroutine(ChangeButtonSize());
 #endif
