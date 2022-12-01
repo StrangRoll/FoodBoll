@@ -7,6 +7,7 @@ public class PlayerInputRoot : MonoBehaviour
     private PlayerInput _playerInput;
     private bool _isTouching = false;
     private Vector2 _moveDirection;
+    private bool _isMoving = false;
 
     public event UnityAction<Vector2> Move;
     public event UnityAction<bool, Vector2> Touch;
@@ -15,6 +16,8 @@ public class PlayerInputRoot : MonoBehaviour
     {
         _playerInput = new PlayerInput();
         _playerInput.Sphere.Move.performed += ctx => OnMove();
+        _playerInput.Sphere.Move.started += ctx => ChangeMovingState(true);
+        _playerInput.Sphere.Move.canceled += ctx => ChangeMovingState(false);
         _playerInput.Touch.Press.performed += ctx => OnPress();
     }
 
@@ -25,7 +28,7 @@ public class PlayerInputRoot : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_isTouching)
+        if (_isMoving)
             Move?.Invoke(_moveDirection);
     }
 
@@ -42,12 +45,16 @@ public class PlayerInputRoot : MonoBehaviour
     private void OnPress()
     {
         _isTouching = !_isTouching;
-
-        if (_isTouching)
-            _moveDirection = Vector2.zero;
-
         var touchPosition = Pointer.current.position.ReadValue();
         Touch?.Invoke(_isTouching, touchPosition);
+    }
+
+    private void ChangeMovingState(bool newState)
+    {
+        _isMoving = newState;
+
+        if (_isMoving == false)
+            _moveDirection = Vector2.zero;
     }
 
 }
