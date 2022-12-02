@@ -1,9 +1,15 @@
 using UnityEngine;
+using Zenject;
 
 public class ButtonsActivator : MonoBehaviour
 {
+    [Inject] private Player _player;
+
     [SerializeField] private CanvasGroup _buttonGroup;
+    [SerializeField] private Warning _warning;
     [SerializeField] private MonoBehaviour _platformContainer;
+
+    private GameObject _foodWarning;
 
     private IPlatform _platform => (IPlatform)_platformContainer;
 
@@ -14,6 +20,11 @@ public class ButtonsActivator : MonoBehaviour
 
         Debug.LogError($"{_platformContainer.name} need to implement {nameof(IPlatform)}.");
         _platformContainer = null;
+    }
+
+    private void Awake()
+    {
+        _foodWarning = _warning.gameObject;
     }
 
     private void OnEnable()
@@ -30,9 +41,16 @@ public class ButtonsActivator : MonoBehaviour
 
     private void OnPlayerEntered()
     {
-        _buttonGroup.alpha = 1;
-        _buttonGroup.blocksRaycasts = true;
-        _buttonGroup.interactable = true;
+        if (_player.IsEmpy)
+        {
+            _buttonGroup.alpha = 1;
+            _buttonGroup.blocksRaycasts = true;
+            _buttonGroup.interactable = true;
+        }
+        else
+        {
+            _foodWarning.SetActive(true);
+        }
     }
 
     private void OnPlayerLeft()
@@ -40,5 +58,6 @@ public class ButtonsActivator : MonoBehaviour
         _buttonGroup.alpha = 0;
         _buttonGroup.blocksRaycasts = false;
         _buttonGroup.interactable = false;
+        _foodWarning.SetActive(false);
     }
 }

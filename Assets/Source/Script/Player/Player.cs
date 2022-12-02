@@ -17,6 +17,14 @@ public class Player : MonoBehaviour
     public event UnityAction PlayerFull;
     public event UnityAction PlayerNotFullMore;
 
+    public bool IsEmpy
+    {
+        get
+        {
+            return _food.Count == 0;
+        }
+    }
+
     public bool TryPickUpFood(Food food)
     {
         if (_currentPrice < _data.PriceCapacity)
