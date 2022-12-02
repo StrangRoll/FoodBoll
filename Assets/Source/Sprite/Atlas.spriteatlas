@@ -53,6 +53,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 6a3ee2e0a71480e41861bad9b8d881f0, type: 3}
   - {fileID: 21300000, guid: 8335ab617728fa6489ae176860e718b3, type: 3}
   - {fileID: 21300000, guid: afc042918acca4943aff56d990180071, type: 3}
+  - {fileID: 21300000, guid: fc576b22b7959924d923ff3edb7b5cb3, type: 3}
   - {fileID: 21300000, guid: 34237d623e9ed0f48ba96ec93432eeba, type: 3}
   - {fileID: 21300000, guid: 88978e432fd40df4d90d1223cc7dd591, type: 3}
   - {fileID: 21300000, guid: 3ad65fd3252d8ca42b58bcbf1c3540b6, type: 3}
@@ -60,7 +61,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 2026047484de55e41a72440ded862b97, type: 3}
   - {fileID: 21300000, guid: f0c6108607d42e747aa13b397bff5e4d, type: 3}
   - {fileID: 21300000, guid: 6fe1e4c7e7f446d4c9d53827181210b3, type: 3}
-  - {fileID: 21300000, guid: d8b304b832439594b929ffc6ae9f39ab, type: 3}
+  - {fileID: 21300000, guid: c3e913f9c1e32d64fbdc05eeada5645f, type: 3}
   - {fileID: 21300000, guid: e5cf537a366edd64fa4c9976f2946860, type: 3}
   - {fileID: 21300000, guid: 9b891fcb23a64774a8f422e5a993a0cc, type: 3}
   - {fileID: 21300000, guid: 2d6639bdd89a9d242976e6f6268bab7b, type: 3}
@@ -70,6 +71,7 @@ SpriteAtlas:
   - Boll
   - ButtonPrice
   - Triangle
+  - YesNoButton
   - money
   - Fat circle border
   - Size
@@ -77,7 +79,7 @@ SpriteAtlas:
   - Border
   - Speed
   - ButtonLevel
-  - video (1)
+  - Reward
   - Platform
   - Capacity
   - Circle

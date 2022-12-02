@@ -5,6 +5,7 @@ using Zenject;
 public class NextLevelPlatform : MonoBehaviour, IPlatform
 {
     [SerializeField] private Canvas _platformCanvas;
+    [SerializeField] private GameObject _nextLevelSign;
 
     [Inject] private FoodGenerator _generator;
     [Inject] private LevelProgress _progress;
@@ -41,6 +42,7 @@ public class NextLevelPlatform : MonoBehaviour, IPlatform
     {
         _isAllFoodPickedUp = false;
         _platformCanvas.enabled = false;
+        _nextLevelSign.SetActive(false);
         PlayerLeft?.Invoke();
     }
 
@@ -48,5 +50,6 @@ public class NextLevelPlatform : MonoBehaviour, IPlatform
     {
         _isAllFoodPickedUp = true;
         _platformCanvas.enabled = true;
+        _nextLevelSign.SetActive(true);
     }
 }

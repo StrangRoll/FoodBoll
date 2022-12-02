@@ -46,7 +46,6 @@ public class MoneyRewardView : MonoBehaviour
         var text = Lean.Localization.LeanLocalization.GetTranslationText(_firstPart);
         text += " ";
         text += _videoAdd.AddedMoney.ToString();
-        text += " ";
         text += Lean.Localization.LeanLocalization.GetTranslationText(_secondPart);
         _moneyCountTextField.text = text;
     }
