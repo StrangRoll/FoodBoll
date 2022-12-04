@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PauseManager : MonoBehaviour, IPauseHandler
 {
-    [SerializeField] private ButtonClickReader _pauseButton;
+    [SerializeField] private PauseManagerRoot _root;
 
     private List<IPauseHandler> _pauseHandlers = new List<IPauseHandler>();
 
@@ -11,12 +11,12 @@ public class PauseManager : MonoBehaviour, IPauseHandler
 
     private void OnEnable()
     {
-        _pauseButton.ButtonClicked += OnButtonClicked; 
+        _root.Pause += OnPause; 
     }
 
     private void OnDisable()
     {
-        _pauseButton.ButtonClicked -= OnButtonClicked;
+        _root.Pause += OnPause;
     }
 
     public void Register(IPauseHandler pauseHandler)
@@ -53,11 +53,5 @@ public class PauseManager : MonoBehaviour, IPauseHandler
         {
             pauseHandler.OnPause(isPause);
         }
-    }
-
-    private void OnButtonClicked()
-    {
-        IsPaused = !IsPaused;
-        OnPause(IsPaused);
     }
 }

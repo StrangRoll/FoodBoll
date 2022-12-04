@@ -18,7 +18,7 @@ public class PlayerInputRoot : MonoBehaviour
         _playerInput.Sphere.Move.performed += ctx => OnMove();
         _playerInput.Sphere.Move.started += ctx => ChangeMovingState(true);
         _playerInput.Sphere.Move.canceled += ctx => ChangeMovingState(false);
-        _playerInput.Touch.Press.performed += ctx => OnPress();
+        _playerInput.World.Press.performed += ctx => OnPress();
     }
 
     private void OnEnable()

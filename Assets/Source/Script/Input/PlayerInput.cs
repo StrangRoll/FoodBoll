@@ -162,7 +162,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
             ]
         },
         {
-            ""name"": ""Touch"",
+            ""name"": ""World"",
             ""id"": ""44565052-dbad-4554-9c83-1f24a0e8cb7f"",
             ""actions"": [
                 {
@@ -172,6 +172,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=2)"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""0b11a644-bd89-43bd-aeaa-7bb60dd7ef91"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
                     ""initialStateCheck"": false
                 }
             ],
@@ -195,6 +204,17 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Phone"",
                     ""action"": ""Press"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1cccc552-811a-4e9f-99a1-57d3ec18ff40"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -229,9 +249,10 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         // Sphere
         m_Sphere = asset.FindActionMap("Sphere", throwIfNotFound: true);
         m_Sphere_Move = m_Sphere.FindAction("Move", throwIfNotFound: true);
-        // Touch
-        m_Touch = asset.FindActionMap("Touch", throwIfNotFound: true);
-        m_Touch_Press = m_Touch.FindAction("Press", throwIfNotFound: true);
+        // World
+        m_World = asset.FindActionMap("World", throwIfNotFound: true);
+        m_World_Press = m_World.FindAction("Press", throwIfNotFound: true);
+        m_World_Pause = m_World.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -321,38 +342,46 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     }
     public SphereActions @Sphere => new SphereActions(this);
 
-    // Touch
-    private readonly InputActionMap m_Touch;
-    private ITouchActions m_TouchActionsCallbackInterface;
-    private readonly InputAction m_Touch_Press;
-    public struct TouchActions
+    // World
+    private readonly InputActionMap m_World;
+    private IWorldActions m_WorldActionsCallbackInterface;
+    private readonly InputAction m_World_Press;
+    private readonly InputAction m_World_Pause;
+    public struct WorldActions
     {
         private @PlayerInput m_Wrapper;
-        public TouchActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Press => m_Wrapper.m_Touch_Press;
-        public InputActionMap Get() { return m_Wrapper.m_Touch; }
+        public WorldActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Press => m_Wrapper.m_World_Press;
+        public InputAction @Pause => m_Wrapper.m_World_Pause;
+        public InputActionMap Get() { return m_Wrapper.m_World; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(TouchActions set) { return set.Get(); }
-        public void SetCallbacks(ITouchActions instance)
+        public static implicit operator InputActionMap(WorldActions set) { return set.Get(); }
+        public void SetCallbacks(IWorldActions instance)
         {
-            if (m_Wrapper.m_TouchActionsCallbackInterface != null)
+            if (m_Wrapper.m_WorldActionsCallbackInterface != null)
             {
-                @Press.started -= m_Wrapper.m_TouchActionsCallbackInterface.OnPress;
-                @Press.performed -= m_Wrapper.m_TouchActionsCallbackInterface.OnPress;
-                @Press.canceled -= m_Wrapper.m_TouchActionsCallbackInterface.OnPress;
+                @Press.started -= m_Wrapper.m_WorldActionsCallbackInterface.OnPress;
+                @Press.performed -= m_Wrapper.m_WorldActionsCallbackInterface.OnPress;
+                @Press.canceled -= m_Wrapper.m_WorldActionsCallbackInterface.OnPress;
+                @Pause.started -= m_Wrapper.m_WorldActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_WorldActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_WorldActionsCallbackInterface.OnPause;
             }
-            m_Wrapper.m_TouchActionsCallbackInterface = instance;
+            m_Wrapper.m_WorldActionsCallbackInterface = instance;
             if (instance != null)
             {
                 @Press.started += instance.OnPress;
                 @Press.performed += instance.OnPress;
                 @Press.canceled += instance.OnPress;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
-    public TouchActions @Touch => new TouchActions(this);
+    public WorldActions @World => new WorldActions(this);
     private int m_PCSchemeIndex = -1;
     public InputControlScheme PCScheme
     {
@@ -375,8 +404,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
     }
-    public interface ITouchActions
+    public interface IWorldActions
     {
         void OnPress(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }
