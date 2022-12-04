@@ -37,6 +37,7 @@ public class PauseManagerRoot : MonoBehaviour
 
     private void OnPause()
     {
-        Pause?.Invoke(!_pauseManager.IsPaused);
+        Pause?.Invoke
+            (!_pauseManager.IsPaused);
     }
 }

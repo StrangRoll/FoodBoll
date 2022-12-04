@@ -4,6 +4,7 @@ using UnityEngine;
 public class PauseManager : MonoBehaviour, IPauseHandler
 {
     [SerializeField] private PauseManagerRoot _root;
+    [SerializeField] private MainMenuPause _mainMenu;
 
     private List<IPauseHandler> _pauseHandlers = new List<IPauseHandler>();
 
@@ -11,12 +12,14 @@ public class PauseManager : MonoBehaviour, IPauseHandler
 
     private void OnEnable()
     {
-        _root.Pause += OnPause; 
+        _root.Pause += OnPause;
+        _mainMenu.GameContinued += OnGameContinued;
     }
 
     private void OnDisable()
     {
         _root.Pause += OnPause;
+        _mainMenu.GameContinued -= OnGameContinued;
     }
 
     public void Register(IPauseHandler pauseHandler)
@@ -53,5 +56,10 @@ public class PauseManager : MonoBehaviour, IPauseHandler
         {
             pauseHandler.OnPause(isPause);
         }
+    }
+
+    private void OnGameContinued()
+    {
+        OnPause(false);
     }
 }

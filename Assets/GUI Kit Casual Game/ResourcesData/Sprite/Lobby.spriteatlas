@@ -56,18 +56,22 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 58dd4e92dd1e2427bb5d418a3e58d159, type: 3}
   - {fileID: 21300000, guid: 299a90a20014649b08b2b908b2cd9f01, type: 3}
   - {fileID: 21300000, guid: a8344ab2be7e54cc6b34c453c8256ed4, type: 3}
+  - {fileID: 21300000, guid: 3c211ed28a1254ad5be923faa2874f0e, type: 3}
   - {fileID: 21300000, guid: 0caa4313e456e4e37916fa64b01d6bae, type: 3}
   - {fileID: 21300000, guid: 1ba70e132f28941ed9977c1a213eb0a4, type: 3}
   - {fileID: 21300000, guid: 1ae66bd372f794f39bc32c484ef067fa, type: 3}
   - {fileID: 21300000, guid: e0d205e33f577419cb357631ec486da0, type: 3}
   - {fileID: 21300000, guid: 00303524916534e0b9a10418673bf13a, type: 3}
+  - {fileID: 21300000, guid: bb129f0554ce5482e97e81f0688f3a7a, type: 3}
   - {fileID: 21300000, guid: e75ece25ef5454b5ba04b74dc5cdf97f, type: 3}
   - {fileID: 21300000, guid: 2488f3177b9074b289245f674de36887, type: 3}
   - {fileID: 21300000, guid: 0d64f6174c0ee48ac82b9113016322ad, type: 3}
   - {fileID: 21300000, guid: 640724475c72a47018e84ab3b25391f8, type: 3}
   - {fileID: 21300000, guid: b27c2157869a544de935b16f63306b69, type: 3}
+  - {fileID: 21300000, guid: bfd71187e5f614337ae0b4a9bcfff07f, type: 3}
   - {fileID: 21300000, guid: 591138871863e48df8a5590b1cd3be86, type: 3}
   - {fileID: 21300000, guid: 224244c7ba5b14ae38f0fe885c73dfaa, type: 3}
+  - {fileID: 21300000, guid: f9e47d48ae68e48eab6bcdcc8fcac328, type: 3}
   - {fileID: 21300000, guid: 61479b88836bb4f97935511db14b098b, type: 3}
   - {fileID: 21300000, guid: ecde1d8893a8645cd839e5f0e4e12557, type: 3}
   - {fileID: 21300000, guid: f69e92e80f2514718b28225dce6d9eb5, type: 3}
@@ -82,6 +86,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 77f2fa5c779c34ab9ad50e39ebe0bacf, type: 3}
   - {fileID: 21300000, guid: 81ad8f5c4852d41e191916940d12b456, type: 3}
   - {fileID: 21300000, guid: d756a7bcbb54b496aa528f21c3ddc7af, type: 3}
+  - {fileID: 21300000, guid: 41f68bec7506344f19c4a2960cda7eb0, type: 3}
   - {fileID: 21300000, guid: 6050946d2efff46eda1b0056fd0e59f7, type: 3}
   - {fileID: 21300000, guid: 3d2be76d8e30e4c40a186541a8f16e28, type: 3}
   - {fileID: 21300000, guid: 7aa159cd1954546159ef6240b3953221, type: 3}
@@ -96,18 +101,22 @@ SpriteAtlas:
   - lobby_menu_shop
   - lobby_pass_bar_bg
   - lobby_pass_bg
+  - loading_rotate_white
   - lobby_sub_icon_mission
   - lobby_bg
   - chest_bar_yellow
   - lobby_sub_icon_trophy
   - lobby_user_lv_reward_glow_white
+  - loading_bg
   - chest_bar_orange
   - lobby_sub_icon_reward
   - lobby_menu_btn_purple
   - lobby_pass_season_bg
   - lobby_icon_chest
+  - bg_loading
   - lobby_pass_bar
   - lobby_user_lv_reward_rotate_white
+  - loading_bar_bg
   - lobby_pass_bar_line
   - lobby_sample_character
   - lobby_menu_clan_dim
@@ -122,6 +131,7 @@ SpriteAtlas:
   - btn_action_yellow
   - lobby_chest_bg
   - lobby_menu_inventory
+  - loading_bar
   - lobby_menu_lock
   - lobby_icon_chat
   - lobby_sub_icon_news-
