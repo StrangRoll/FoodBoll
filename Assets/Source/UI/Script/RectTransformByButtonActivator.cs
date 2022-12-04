@@ -1,10 +1,13 @@
 using UnityEngine;
+using Zenject;
 
 public class RectTransformByButtonActivator : MonoBehaviour
 {
     [SerializeField] private ButtonClickReader _button;
     [SerializeField] private RectTransform _transform;
     [SerializeField] private bool _isButtonActivate;
+
+    [Inject] private PauseManager _pauseManager;
 
     private GameObject _transformObject;
 
@@ -25,6 +28,9 @@ public class RectTransformByButtonActivator : MonoBehaviour
 
     private void ButtonClicked()
     {
+        if (_pauseManager.IsPaused)
+            return;
+
         _transformObject.SetActive(_isButtonActivate);
     }
 }

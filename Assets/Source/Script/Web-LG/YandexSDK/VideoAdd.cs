@@ -10,6 +10,7 @@ public class VideoAdd : MonoBehaviour
     [Inject] private SizeUpgradeButton _sizeUpgrade;
     [Inject] private SpeedUpgradeButton _speedUpgrade;
     [Inject] private CapacityUpgradeButton _capacityUpgrade;
+    [Inject] private PauseManager _pauseManager;
 
     public event UnityAction<int> VideoAddShowed;
 
@@ -34,6 +35,9 @@ public class VideoAdd : MonoBehaviour
 
     private void OnButtonClicked()
     {
+        if (_pauseManager.IsPaused)
+            return;
+
 #if UNITY_WEBGL && !UNITY_EDITOR
         VideoAd.Show(() => OnVideoStart(), () => OnRewardGot());
 #endif
