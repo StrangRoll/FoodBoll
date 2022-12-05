@@ -16,6 +16,12 @@ public class PauseManager : MonoBehaviour, IPauseHandler
         _mainMenu.GameContinued += OnGameContinued;
     }
 
+    private void Start()
+    {
+        IsPaused = true;
+        OnPause(true);
+    }
+
     private void OnDisable()
     {
         _root.Pause += OnPause;
