@@ -17,19 +17,6 @@ public class Autorization : MonoBehaviour
 #endif
     }
 
-    public bool TryAutorize()
-    {
-        PlayerAccount.RequestPersonalProfileDataPermission();
-
-        if (PlayerAccount.HasPersonalProfileDataPermission)
-        {
-            IsAutorized = true;
-
-        }
-
-        return IsAutorized;
-    }
-
     private void GetPlayerInfo()
     {
         PlayerAccount.GetProfileData((result) =>
@@ -46,8 +33,13 @@ public class Autorization : MonoBehaviour
     {
         yield return YandexGamesSdk.Initialize();
 
+        PlayerAccount.RequestPersonalProfileDataPermission();
+
         if (PlayerAccount.HasPersonalProfileDataPermission)
+        {
             IsAutorized = true;
+            GetPlayerInfo();
+        }
 
         AutorizationChecked?.Invoke();
     }

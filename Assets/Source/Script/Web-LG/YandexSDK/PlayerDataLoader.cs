@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using Zenject;
 
 public class PlayerDataLoader : MonoBehaviour
 {
@@ -65,16 +66,17 @@ public class PlayerDataLoader : MonoBehaviour
         _playerData.Add(PlayerDataKey.SizeButton, 1);
         _playerData.Add(PlayerDataKey.CapacityButton, 1);
         _playerData.Add(PlayerDataKey.Money, 122);
+
         SendAllEvents();
     }
 
     private void SendAllEvents()
     {
-        LevelNomberLoaded?.Invoke(_playerData[PlayerDataKey.LevelNomber]);
         SpeedButtonLevelLoaded?.Invoke(_playerData[PlayerDataKey.SpeedButton]);
         SizeButtonLevelLoaded?.Invoke(_playerData[PlayerDataKey.SizeButton]);
         CapacityButtonLevelLoaded?.Invoke(_playerData[PlayerDataKey.CapacityButton]);
         MoneyCountLoaded?.Invoke(_playerData[PlayerDataKey.Money]);
+        LevelNomberLoaded?.Invoke(_playerData[PlayerDataKey.LevelNomber]);
     }
 
     private bool CheckSymbol(char symbol)

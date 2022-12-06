@@ -5,6 +5,7 @@ using Zenject;
 public class MainMenuLeaderboard : MonoBehaviour
 {
     [SerializeField] private ButtonClickReader _leaderboardButton;
+    [SerializeField] private ButtonClickReader _closeButton;
     [SerializeField] private Image _leaderboardImage;
     [SerializeField] private Image _autorizationBoardImage;
 
@@ -21,15 +22,17 @@ public class MainMenuLeaderboard : MonoBehaviour
 
     private void OnEnable()
     {
-        _leaderboardButton.ButtonClicked += OnButtonClicked;
+        _leaderboardButton.ButtonClicked += OLeaderboardButtonClicked;
+        _closeButton.ButtonClicked += OnCloseButtonClicked;
     }
 
     private void OnDisable() 
     {
-        _leaderboardButton.ButtonClicked -= OnButtonClicked;
+        _leaderboardButton.ButtonClicked -= OLeaderboardButtonClicked;
+        _closeButton.ButtonClicked += OnCloseButtonClicked;
     }
 
-    private void OnButtonClicked()
+    private void OLeaderboardButtonClicked()
     {
         if (_autorization.IsAutorized )
         {
@@ -39,5 +42,10 @@ public class MainMenuLeaderboard : MonoBehaviour
         {
             _autorizationBoard.SetActive(true);
         }
+    }
+
+    private void OnCloseButtonClicked()
+    {
+        _leaderboard.SetActive(false);
     }
 }

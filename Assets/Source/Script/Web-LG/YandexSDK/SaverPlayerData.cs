@@ -12,7 +12,8 @@ public class SaverPlayerData : MonoBehaviour
     [Inject] private SpeedUpgradeButton _speedButton;
     [Inject] private CapacityUpgradeButton _capacityButton;
     [Inject] private PlayerWallet _wallet;
-    [Inject] private PlayerDataLoader _loader;
+    [Inject] private Autorization _autorization;
+
 
     private Dictionary<string, int> _playerData = new Dictionary<string, int>();
     private Coroutine _moneyCoroutine;
@@ -42,12 +43,34 @@ public class SaverPlayerData : MonoBehaviour
         _speedButton.SpeedIncreased -= OnSpeedIncreased;
         _sizeButton.SizeIncreased -= OnSizeIncreased;
         _capacityButton.CapacityIncreased -= OnCapacityIncreased;
+        _wallet.MoneyCountChanged -= OnMoneyCountChanged;
     }
 
     private void OnLevelChanged(int levelNomber, int nextLevelNomber)
     {
+#if UNITY_WEBGL && !UNITY_EDITOR
+        NewRecord(levelNomber);
+#endif
         _playerData[PlayerDataKey.LevelNomber] = levelNomber;
         SaveData();
+    }
+
+    private void NewRecord(int levelNomber)
+    {
+        if (_autorization.IsAutorized == false)
+            return;
+
+        Agava.YandexGames.Leaderboard.GetPlayerEntry(LeaderBoardName.World, (result) =>
+        {
+            if (result == null)
+            {
+                Agava.YandexGames.Leaderboard.SetScore(LeaderBoardName.World, levelNomber);
+            }
+            else if (result.score < levelNomber)
+            {
+                Agava.YandexGames.Leaderboard.SetScore(LeaderBoardName.World, levelNomber);
+            }
+        });
     }
 
     private void OnSpeedIncreased(float deltaSpeed)

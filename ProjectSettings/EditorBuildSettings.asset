@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Source/Scene/Game.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
     path: Assets/Samples/Yandex Games/11.0.0/Playtesting Sample/PlaytestingScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
