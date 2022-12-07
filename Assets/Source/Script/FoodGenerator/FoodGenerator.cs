@@ -7,7 +7,7 @@ public class FoodGenerator : MonoBehaviour
 {
     [SerializeField] private Food[] _foodPrefabs;
     [SerializeField] private Transform _foodParent;
-    [SerializeField] private ButtonClickReader _button;
+    [SerializeField] private LevelChanger _levelChanger;
 
     [Inject (Id = ZenjectId.FoodPosition)] private readonly Vector2[] _startPositions;
     [Inject (Id = ZenjectId.FoodPosition)] private readonly Vector2 _blockDimensions;
@@ -17,34 +17,34 @@ public class FoodGenerator : MonoBehaviour
 
     public event UnityAction<int> FoodGenerated;
 
-    private void OnEnable()
-    {
-        _button.ButtonClicked += OnButtonClicked;
-    }
-
-    private void Start()
+    private void Awake()
     {
         _blockWidth = _blockDimensions.x;
         _blockHeight = _blockDimensions.y;
-        GenerateFood();
+    }
+
+    private void OnEnable()
+    {
+        _levelChanger.LevelChanged += OnLevelChanged;
     }
 
     private void OnDisable()
     {
-        _button.ButtonClicked -= OnButtonClicked;
+        _levelChanger.LevelChanged -= OnLevelChanged;
     }
 
-    private void OnButtonClicked()
+    private void OnLevelChanged(int[] startPositionIndexes)
     {
-        GenerateFood();
+        GenerateFood(startPositionIndexes);
     }
 
-    private void GenerateFood()
+    private void GenerateFood(int[] startPositionIndexes)
     {
         var foodCount = 0;
-
-        foreach (var position in _startPositions)
+        
+        foreach (var index in startPositionIndexes)
         {
+            var position = _startPositions[index];
             var foodIndex = Random.Range(0, _foodPrefabs.Length);
             var food = _foodPrefabs[foodIndex];
             var foodInLine = (int)(_blockWidth / food.RequiredSpace) - 1;
