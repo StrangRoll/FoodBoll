@@ -35,13 +35,14 @@ public class Leaderboard : MonoBehaviour
             index++;
         }
 
+        _playerPosition.text = "6";
+
         if (isUserTop == false)
             Agava.YandexGames.Leaderboard.GetPlayerEntry(_autorization.PlayerName, (result) =>
             {
                 _positions[_topPlayerCount - 1].UpdateInfo(_autorization.PlayerName, result.score.ToString());
+                _playerPosition.text = userRank.ToString();
             });
-
-        _playerPosition.text = userRank.ToString();
     }
 
     private void OnError(string something)
