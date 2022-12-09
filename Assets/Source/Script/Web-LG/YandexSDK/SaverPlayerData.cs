@@ -76,16 +76,19 @@ public class SaverPlayerData : MonoBehaviour
     private void OnSpeedIncreased(float deltaSpeed)
     {
         _playerData[PlayerDataKey.SpeedButton]++;
+        SaveData();
     }
 
     private void OnSizeIncreased(float deltaSize)
     {
         _playerData[PlayerDataKey.SizeButton]++;
+        SaveData();
     }
 
     private void OnCapacityIncreased(int deltaCapacity)
     {
         _playerData[PlayerDataKey.CapacityButton]++;
+        SaveData();
     }
 
     private void OnMoneyCountChanged(int money)
@@ -108,6 +111,9 @@ public class SaverPlayerData : MonoBehaviour
     private void SaveData()
     {
 #if UNITY_WEBGL && !UNITY_EDITOR
+        if (_autorization.IsAutorized == false)
+            return;
+
         var savedData = "{";
         var end = "";
 

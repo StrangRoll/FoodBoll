@@ -27,10 +27,14 @@ public class PlayerDataLoader : MonoBehaviour
     {
         yield return YandexGamesSdk.Initialize();
 
-        PlayerAccount.Authorize();
-
         if (PlayerAccount.IsAuthorized)
+        {
             PlayerAccount.GetPlayerData((data) => PlayerDataHandler(data));
+        }
+        else
+        {
+            StandartStart();
+        }
     }
 
     private void PlayerDataHandler(string playerData)

@@ -34,7 +34,7 @@ public class MainMenuLeaderboard : MonoBehaviour
 
     private void OLeaderboardButtonClicked()
     {
-        if (_autorization.IsAutorized )
+        if (_autorization.IsAutorized)
         {
             _leaderboard.SetActive(true);
         }

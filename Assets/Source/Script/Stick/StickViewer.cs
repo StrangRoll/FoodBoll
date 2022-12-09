@@ -2,25 +2,37 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-public class StickViewer : MonoBehaviour
+public class StickViewer : MonoBehaviour, IPauseHandler
 {
     [SerializeField] private Image _circleImager;
     [SerializeField] private Image _borderImager;
 
     [Inject] private PlayerInputRoot _inputRoot;
+    [Inject] private PauseManager _pauseManager;
 
     private void OnEnable()
     {
         _inputRoot.Touch += OnTouch;
+        _pauseManager.Register(this);
     }
 
     private void OnDisable()
     {
         _inputRoot.Touch -= OnTouch;
+        _pauseManager.UnRegister(this);
+    }
+
+    public void OnPause(bool isPause)
+    {
+        if (isPause == false)
+            ChangeVisible(false);
     }
 
     private void OnTouch(bool isTouching, Vector2 touchPosition)
     {
+        if (_pauseManager.IsPaused)
+            return;
+
         if (isTouching)
             ChangePosition(touchPosition);
 
