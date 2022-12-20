@@ -7,7 +7,7 @@ public class NextLevelPlatform : MonoBehaviour, IPlatform
     [SerializeField] private Canvas _platformCanvas;
     [SerializeField] private GameObject _nextLevelSign;
 
-    [Inject] private FoodGenerator _generator;
+    [Inject] private OldFoodGenerator _generator;
     [Inject] private LevelProgress _progress;
 
     private bool _isAllFoodPickedUp = false;

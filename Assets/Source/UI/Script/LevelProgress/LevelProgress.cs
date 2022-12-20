@@ -4,7 +4,7 @@ using Zenject;
 
 public class LevelProgress : MonoBehaviour, ISliderCountChanger
 {
-    [Inject] private FoodGenerator _generator;
+    [Inject] private OldFoodGenerator _generator;
     [Inject] private FoodPickuper _pickuper;
     [Inject] private PlayerDataLoader _saveLoader;
 

@@ -4,6 +4,8 @@ using Zenject;
 
 public class PlayerWallet : MonoBehaviour
 {
+    [SerializeField] private MoneyCreator _moneyCreator;
+
     [Inject] private VideoAdd _videoAdd;
     [Inject] private MoneyPickuper _pickuper;
     [Inject] private PlayerDataLoader _loader;
@@ -19,6 +21,7 @@ public class PlayerWallet : MonoBehaviour
         _pickuper.MoneyPickedUp += OnMoneyPickedUp;
         _videoAdd.VideoAddShowed += OnVideoAddShowed;
         _loader.MoneyCountLoaded += OnMoneyCountLoaded;
+        _moneyCreator.MoneyPlusCreated += OnMoneyPlusCreated;
     }
 
     private void OnDisable()
@@ -26,6 +29,7 @@ public class PlayerWallet : MonoBehaviour
         _pickuper.MoneyPickedUp -= OnMoneyPickedUp;
         _videoAdd.VideoAddShowed -= OnVideoAddShowed;
         _loader.MoneyCountLoaded -= OnMoneyCountLoaded;
+        _moneyCreator.MoneyPlusCreated -= OnMoneyPlusCreated;
     }
 
     private void Start()
@@ -48,6 +52,11 @@ public class PlayerWallet : MonoBehaviour
     {
         ChangeMoneyCount(-_reservedMoney);
         _reservedMoney = 0;
+    }
+
+    private void OnMoneyPlusCreated()
+    {
+        ChangeMoneyCount(1);
     }
 
     private void OnMoneyCountLoaded(int money)

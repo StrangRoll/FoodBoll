@@ -1,70 +1,34 @@
-using NTC.Global.Pool;
 using UnityEngine;
-using UnityEngine.Events;
 using Zenject;
 
 public class FoodGenerator : MonoBehaviour
 {
-    [SerializeField] private Food[] _foodPrefabs;
-    [SerializeField] private Transform _foodParent;
-    [SerializeField] private LevelChanger _levelChanger;
+    [Inject] private Food[] _foodPrefabs;
+    [Inject(Id = ZenjectId.FoodGeneratorParametersMinFood)] private float _minFoodCount;
+    [Inject(Id = ZenjectId.FoodGeneratorParametersMaxFood)] private float _maxFoodCount;
+    [Inject(Id = ZenjectId.FoodGeneratorParametersRadius)] private float _radius;
+    [Inject(Id = ZenjectId.FoodGeneratorParameters)] private ParticleSystem _particle;
 
-    [Inject (Id = ZenjectId.FoodPosition)] private readonly Vector2[] _startPositions;
-    [Inject (Id = ZenjectId.FoodPosition)] private readonly Vector2 _blockDimensions;
-
-    private float _blockWidth;
-    private float _blockHeight;
-
-    public event UnityAction<int> FoodGenerated;
-
-    private void Awake()
+    private void OnTriggerEnter(Collider other)
     {
-        _blockWidth = _blockDimensions.x;
-        _blockHeight = _blockDimensions.y;
+        if (other.TryGetComponent<Floor>(out Floor floor))
+            GenerateFood();
     }
 
-    private void OnEnable()
+    private void GenerateFood()
     {
-        _levelChanger.LevelChanged += OnLevelChanged;
-    }
+        var foodCount = Random.Range(_minFoodCount, _maxFoodCount + 1);
 
-    private void OnDisable()
-    {
-        _levelChanger.LevelChanged -= OnLevelChanged;
-    }
-
-    private void OnLevelChanged(int[] startPositionIndexes)
-    {
-        GenerateFood(startPositionIndexes);
-    }
-
-    private void GenerateFood(int[] startPositionIndexes)
-    {
-        var foodCount = 0;
-        
-        foreach (var index in startPositionIndexes)
+        for (int i = 0; i < foodCount; i++)
         {
-            var position = _startPositions[index];
             var foodIndex = Random.Range(0, _foodPrefabs.Length);
             var food = _foodPrefabs[foodIndex];
-            var foodInLine = (int)(_blockWidth / food.RequiredSpace) - 1;
-            var foodInColumn = (int)(_blockHeight / food.RequiredSpace) - 1;
-            var halfSpace = food.RequiredSpace / 2;
-
-            for (int i = 0; i < foodInLine; i++)
-            {
-                for (int j = 0; j < foodInColumn; j++)
-                {
-                    var xFoodPosition = position.x + food.RequiredSpace * i + halfSpace;
-                    var zFoodPosition = position.y - food.RequiredSpace * j - halfSpace;
-                    var foodPosition = new Vector3(xFoodPosition, food.transform.position.y, zFoodPosition);
-                    var newFood = NightPool.Spawn(food, foodPosition, food.transform.rotation);
-                    newFood.transform.parent = _foodParent;
-                    foodCount++;
-                }
-            }
+            var RandomCircle = _radius * Random.insideUnitCircle;
+            Vector3 foodPosition = transform.position + new Vector3(RandomCircle.x, food.transform.position.y, RandomCircle.y);
+            var newFood = Instantiate(food, foodPosition, food.transform.rotation);
         }
 
-        FoodGenerated?.Invoke(foodCount);
+        var newParticle = Instantiate(_particle, transform.position + _particle.transform.position, _particle.transform.rotation);
+        newParticle.Play();
     }
 }

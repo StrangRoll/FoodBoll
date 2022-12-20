@@ -3,12 +3,12 @@ using Zenject;
 
 public class FoodGeneratorInstaller : MonoInstaller
 {
-    [SerializeField] private FoodGenerator _generator;
+    [SerializeField] private OldFoodGenerator _generator;
 
     public override void InstallBindings()
     {
         Container
-            .Bind<FoodGenerator>()
+            .Bind<OldFoodGenerator>()
             .FromInstance(_generator)
             .AsSingle();
     }

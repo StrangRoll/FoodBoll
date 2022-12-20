@@ -6,7 +6,7 @@ public class WayToNextLevel : MonoBehaviour
     [SerializeField] private WayFinderActivator _activator;
 
     [Inject] private LevelProgress _progress;
-    [Inject] private FoodGenerator _generator;
+    [Inject] private OldFoodGenerator _generator;
 
     private void OnEnable()
     {
