@@ -1,13 +1,17 @@
+using NTC.Global.Pool;
 using UnityEngine;
 using Zenject;
 
 public class FoodGenerator : MonoBehaviour
 {
     [Inject] private Food[] _foodPrefabs;
-    [Inject(Id = ZenjectId.FoodGeneratorParametersMinFood)] private float _minFoodCount;
-    [Inject(Id = ZenjectId.FoodGeneratorParametersMaxFood)] private float _maxFoodCount;
-    [Inject(Id = ZenjectId.FoodGeneratorParametersRadius)] private float _radius;
-    [Inject(Id = ZenjectId.FoodGeneratorParameters)] private ParticleSystem _particle;
+    [Inject(Id = FoodGeneratorParametersId.MinFood)] private float _minFoodCount;
+    [Inject(Id = FoodGeneratorParametersId.MaxFood)] private float _maxFoodCount;
+    [Inject(Id = FoodGeneratorParametersId.Radius)] private float _radius;
+    [Inject(Id = FoodGeneratorParametersId.JumpPower)] private float _jumpPower;
+    [Inject(Id = FoodGeneratorParametersId.JumpDuration)] private float _jumpDuration;
+    [Inject(Id = FoodGeneratorParametersId.StartScale)] private Vector3 _startScale;
+    [Inject(Id = FoodGeneratorParametersId.Particle)] private ParticleSystem _particle;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -25,10 +29,12 @@ public class FoodGenerator : MonoBehaviour
             var food = _foodPrefabs[foodIndex];
             var RandomCircle = _radius * Random.insideUnitCircle;
             Vector3 foodPosition = transform.position + new Vector3(RandomCircle.x, food.transform.position.y, RandomCircle.y);
-            var newFood = Instantiate(food, foodPosition, food.transform.rotation);
+            var newFood = Instantiate(food, transform.position, food.transform.rotation);
+            newFood.Init(foodPosition, _jumpPower, _jumpDuration, _startScale);
         }
 
-        var newParticle = Instantiate(_particle, transform.position + _particle.transform.position, _particle.transform.rotation);
+        var newParticle = NightPool.Spawn(_particle, transform.position + _particle.transform.position, _particle.transform.rotation);
         newParticle.Play();
+        enabled = false;
     }
 }

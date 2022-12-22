@@ -1,24 +1,27 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class FurnitureDestroyer : MonoBehaviour
 {
+    [SerializeField] private GameObject _view;
     [SerializeField] private Rigidbody[] _selfParts;
     [SerializeField] private Collider[] _selfPartColliders;
-    [SerializeField] private Rigidbody[] _meals;
+    [SerializeField] private Rigidbody _meal;
+    [SerializeField] private bool _isFalling;
+    [SerializeField] private Collider[] _selfColliders;
 
-    private void Start()
+    public event UnityAction FurnitureDestroyed;
+
+    private void Awake()
     {
         foreach (var part in _selfParts)
         {
-            part.Sleep();
+            part.isKinematic = true;
         }
 
-        foreach (var meal in _meals)
-        {
-            meal.Sleep();
-        }
+        if (_meal != null)
+            _meal.isKinematic = true;
     }
 
     private void OnTriggerEnter(Collider collider)
@@ -27,15 +30,26 @@ public class FurnitureDestroyer : MonoBehaviour
         {
             foreach (var part in _selfParts)
             {
-                part.WakeUp();
+                part.isKinematic = false;
             }
 
-            foreach (var meal in _meals)
+            foreach (var selfCollider in _selfColliders)
             {
-                meal.WakeUp();
+                selfCollider.enabled = false;
             }
 
-            StartCoroutine(ToTrigger());
+            _view.SetActive(false);
+
+            if (_meal != null)
+            {
+                _meal.isKinematic = false;
+                FurnitureDestroyed?.Invoke();
+            }
+
+            if (_isFalling)
+            {
+                StartCoroutine(ToTrigger());
+            }
         }
     }
 

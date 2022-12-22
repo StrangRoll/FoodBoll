@@ -1,5 +1,6 @@
 using NTC.Global.Pool;
 using UnityEngine;
+using DG.Tweening;
 
 
 [RequireComponent(typeof(Collider))]
@@ -9,7 +10,8 @@ public class Food : MonoBehaviour, IPoolItem
     [SerializeField] private float _requiredSpace;
 
     private Collider _collider;
-    private Vector3 _startSize;
+    private Vector3 _normalSize;
+    private int _jumpCount = 1;
 
     public float RequiredSpace
     {
@@ -21,7 +23,7 @@ public class Food : MonoBehaviour, IPoolItem
     {
         Price = _price;
         _collider = GetComponent<Collider>();
-        _startSize = transform.localScale;
+        _normalSize = transform.localScale;
     }
 
     private void OnTriggerEnter(Collider collider)
@@ -33,12 +35,22 @@ public class Food : MonoBehaviour, IPoolItem
         }
     }   
 
+    public void Init(Vector3 foodPosition, float jumpPower, float jumpDuration, Vector3 startScale)
+    {
+        transform.DOJump(foodPosition, jumpPower, _jumpCount, jumpDuration);
+        transform.localScale = startScale;
+        transform.DOScale(_normalSize, jumpDuration).OnComplete(OnAnimationEnded);
+    }
+
     public void OnDespawn() { return; }
 
     public void OnSpawn()
     {
-        _collider.enabled = true;
-        transform.localScale = _startSize;
+        _collider.enabled = false;
+    }
 
+    private void OnAnimationEnded()
+    {
+        _collider.enabled = true;
     }
 }
