@@ -1,9 +1,12 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using Zenject;
 
 public class PlayerInputRoot : MonoBehaviour
 {
+    [Inject] private StartAnimationHandler _startAnimation;
+
     private PlayerInput _playerInput;
     private bool _isTouching = false;
     private Vector2 _moveDirection;
@@ -28,6 +31,12 @@ public class PlayerInputRoot : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (_startAnimation.IsGoing)
+        {
+            Move?.Invoke(Vector3.right);
+            return;
+        }
+
         if (_isMoving)
             Move?.Invoke(_moveDirection);
     }

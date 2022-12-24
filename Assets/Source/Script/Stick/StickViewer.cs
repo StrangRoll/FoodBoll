@@ -9,6 +9,7 @@ public class StickViewer : MonoBehaviour, IPauseHandler
 
     [Inject] private PlayerInputRoot _inputRoot;
     [Inject] private PauseManager _pauseManager;
+    [Inject] private StartAnimationHandler _startAnimation;
 
     private void OnEnable()
     {
@@ -30,6 +31,9 @@ public class StickViewer : MonoBehaviour, IPauseHandler
 
     private void OnTouch(bool isTouching, Vector2 touchPosition)
     {
+        if (_startAnimation.IsGoing)
+            return;
+
         if (_pauseManager.IsPaused)
             return;
 
