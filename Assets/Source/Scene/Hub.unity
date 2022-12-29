@@ -1462,6 +1462,7 @@ GameObject:
   m_Component:
   - component: {fileID: 315107068}
   - component: {fileID: 315107069}
+  - component: {fileID: 315107070}
   m_Layer: 0
   m_Name: PlayerInfo
   m_TagString: Untagged
@@ -1494,6 +1495,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72ebd7bbd879e13458c2e059b041dbd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &315107070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 315107067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9ea4c2356c57de409dabd2783bfbf4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &322039634
@@ -5929,7 +5942,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &963948745
 Transform:
   m_ObjectHideFlags: 0
@@ -9368,7 +9381,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.02e-43, y: 0, z: 0, w: 2.3949022e-23}
+  m_BoundingSphereOverride: {x: 7.622461e-39, y: 7.806135e-39, z: 7.714302e-39, w: 7.989809e-39}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -11839,7 +11852,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 7560189476110429149}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1643586685}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0f9e050b498c81e47bd4b931ab1d8164, type: 3}
   m_Name: 
@@ -13671,7 +13684,6 @@ GameObject:
   - component: {fileID: 1996812099}
   - component: {fileID: 1996812100}
   - component: {fileID: 1996812101}
-  - component: {fileID: 1996812102}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -13825,18 +13837,6 @@ MonoBehaviour:
   _timeBetweenPickups: 0.01
   _scaler: 0.01
   _moneyPlatform: {fileID: 8794368093801393195}
---- !u!114 &1996812102
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1996812092}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df540f00554a1b04ebdd1865578e520f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2006122977
 GameObject:
   m_ObjectHideFlags: 0
@@ -15061,6 +15061,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2139054721}
   - component: {fileID: 2139054722}
+  - component: {fileID: 2139054723}
   m_Layer: 0
   m_Name: LevelConnector
   m_TagString: Untagged
@@ -15098,6 +15099,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _foodInfoRecipient: {fileID: 1012962750}
+  _playerInfoRecipient: {fileID: 315107070}
+--- !u!114 &2139054723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139054720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04c677ace4c9be348aac23705c77186b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _foodInfoCollecter: {fileID: 1012962751}
+  _playerInfoCollecter: {fileID: 315107069}
 --- !u!1 &2139876591
 GameObject:
   m_ObjectHideFlags: 0
@@ -16129,10 +16145,22 @@ PrefabInstance:
       propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7560189475239947285, guid: fc8044fe702ae844784329070fa7c1c5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7560189475599568728, guid: fc8044fe702ae844784329070fa7c1c5, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7560189475599568729, guid: fc8044fe702ae844784329070fa7c1c5, type: 3}
       propertyPath: _target
       value: 
       objectReference: {fileID: 1661934958}
+    - target: {fileID: 7560189475599568729, guid: fc8044fe702ae844784329070fa7c1c5, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7560189475599568729, guid: fc8044fe702ae844784329070fa7c1c5, type: 3}
       propertyPath: _foodSeller
       value: 
@@ -16141,6 +16169,22 @@ PrefabInstance:
       propertyPath: _updater
       value: 
       objectReference: {fileID: 1643586692}
+    - target: {fileID: 7560189475599568733, guid: fc8044fe702ae844784329070fa7c1c5, type: 3}
+      propertyPath: _foodInfoRecipient
+      value: 
+      objectReference: {fileID: 1012962750}
+    - target: {fileID: 7560189475599568733, guid: fc8044fe702ae844784329070fa7c1c5, type: 3}
+      propertyPath: _isActivateOnStart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7560189475599568733, guid: fc8044fe702ae844784329070fa7c1c5, type: 3}
+      propertyPath: _isActivateOnStyart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7560189475599568734, guid: fc8044fe702ae844784329070fa7c1c5, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7560189475599568800, guid: fc8044fe702ae844784329070fa7c1c5, type: 3}
       propertyPath: m_Name
       value: WayToSeller

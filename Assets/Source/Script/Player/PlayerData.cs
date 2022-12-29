@@ -7,6 +7,7 @@ public class PlayerData : MonoBehaviour
     [Inject] private SphereMovier _sphere;
 
     private Transform _sphereTransform;
+    private float _startSize = 1.6f;
 
     public event UnityAction<float> SizeIncreased;
 
@@ -31,7 +32,8 @@ public class PlayerData : MonoBehaviour
 
     public void IncreaseSize(float deltaSize)
     {
-        _sphereTransform.localScale += new Vector3(deltaSize, deltaSize, deltaSize);
+        Size += deltaSize;
+        _sphereTransform.localScale = new Vector3(Size, Size, Size);
         SizeIncreased?.Invoke(deltaSize);
     }
 }

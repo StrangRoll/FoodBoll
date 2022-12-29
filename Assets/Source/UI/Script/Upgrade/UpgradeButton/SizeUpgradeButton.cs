@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.Events;
-using Zenject;
 
 public class SizeUpgradeButton : UpgradeButton
 {

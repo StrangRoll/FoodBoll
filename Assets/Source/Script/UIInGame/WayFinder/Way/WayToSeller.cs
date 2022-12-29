@@ -7,11 +7,6 @@ public class WayToSeller : MonoBehaviour
 
     [Inject] private Player _player;
 
-    private void Awake()
-    {
-        OnPlayerNotFullMore();
-    }
-
     private void OnEnable()
     {
         _player.PlayerFull += OnPlayerFull;

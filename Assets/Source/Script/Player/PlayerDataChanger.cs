@@ -7,7 +7,7 @@ public class PlayerDataChanger : MonoBehaviour
 
     [Inject] private SpeedUpgradeButton _speedUpgrade;
     [Inject] private CapacityUpgradeButton _capacityUpgrade;
-    [Inject] private PlayerData _sizeUpgrade;
+    [Inject] private SizeUpgradeButton _sizeUpgrade;
 
 
     private void OnEnable()
@@ -35,6 +35,6 @@ public class PlayerDataChanger : MonoBehaviour
     }
     private void OnSizeIncreased(float deltaSize)
     {
-        transform.localScale += new Vector3(deltaSize, deltaSize, deltaSize);
+        _data.IncreaseSize(deltaSize);
     }
 }

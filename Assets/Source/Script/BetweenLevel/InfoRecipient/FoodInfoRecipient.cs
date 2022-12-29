@@ -1,5 +1,6 @@
 using NTC.Global.Pool;
 using UnityEngine;
+using UnityEngine.Events;
 using Zenject;
 
 public class FoodInfoRecipient : MonoBehaviour
@@ -9,7 +10,9 @@ public class FoodInfoRecipient : MonoBehaviour
 
     private FoodInformation[] _foodInfo;
 
-    private void Awake()
+    public event UnityAction PlayerNotEmpty;
+
+    private void Start()
     {
         if (_foodInfo == null)
             return;
@@ -18,10 +21,15 @@ public class FoodInfoRecipient : MonoBehaviour
 
         foreach (var argument in _foodInfo)
         {
-            var newFood = NightPool.Spawn(argument.Prefab, argument.Position, argument.Rotation);
-            newFood.transform.SetParent(sphereTransform, false);
+            var newFood = NightPool.Spawn(argument.Prefab , _sphere.transform, argument.Rotation, false);
+            newFood.transform.localScale = argument.Scale;
+            newFood.transform.localPosition = argument.Position;
+            newFood.InitWithoutAnimation(argument.Prefab);
             _player.TryPickUpFood(newFood);
         }
+
+        if (_foodInfo.Length > 0)
+            PlayerNotEmpty?.Invoke();
 
         _foodInfo = null;
     }

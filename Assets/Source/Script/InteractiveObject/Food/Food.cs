@@ -20,9 +20,6 @@ public class Food : MonoBehaviour, IPoolItem
     {
         Price = _price;
         _collider = GetComponent<Collider>();
-
-        if (_normalSize == Vector3.zero)
-            _normalSize = transform.localScale;
     }
 
     private void OnTriggerEnter(Collider collider)
@@ -34,12 +31,23 @@ public class Food : MonoBehaviour, IPoolItem
         }   
     }   
 
-    public void Init(Vector3 foodPosition, float jumpPower, float jumpDuration, Vector3 startScale, Food prefab)
+    public void InitWithAnimation(Vector3 foodPosition, float jumpPower, float jumpDuration, Vector3 startScale, Food prefab)
     {
         Prefab = prefab;
+        _normalSize = prefab.transform.localScale;
+        _normalRotation = prefab.transform.localRotation;
+        _normalY = prefab.transform.position.y;
         transform.DOJump(foodPosition, jumpPower, _jumpCount, jumpDuration);
         transform.localScale = startScale;
         transform.DOScale(_normalSize, jumpDuration).OnComplete(OnAnimationEnded);
+    }
+
+    public void InitWithoutAnimation(Food prefab)
+    {
+        Prefab = prefab;
+        _normalSize = prefab.transform.localScale;
+        _normalRotation = prefab.transform.localRotation;
+        _normalY = prefab.transform.position.y;
     }
 
     public void OnDespawn()
@@ -56,9 +64,6 @@ public class Food : MonoBehaviour, IPoolItem
 
     private void OnAnimationEnded()
     {
-        _normalSize = transform.localScale;
-        _normalRotation = transform.localRotation;
-        _normalY = transform.position.y;
         _collider.enabled = true;
     }
 }

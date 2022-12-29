@@ -50,10 +50,10 @@ public class Player : MonoBehaviour
 
     private void ChangeCurrentPrice(float deltaPrice)
     {
-        if (_currentPrice == _data.Capacity && deltaPrice < 0)
-            PlayerNotFullMore?.Invoke();
-
         _currentPrice += deltaPrice;
+
+        if (_currentPrice < _data.Capacity)
+            PlayerNotFullMore?.Invoke();
 
         if (_currentPrice < 0)
             _currentPrice = 0;
