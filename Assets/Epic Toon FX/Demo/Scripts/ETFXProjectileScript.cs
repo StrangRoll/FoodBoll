@@ -3,9 +3,9 @@ using System.Collections;
 
     public class ETFXProjectileScript : MonoBehaviour
     {
-        public GameObject impactParticle; // Effect spawned when projectile hits a collider
-        public GameObject projectileParticle; // Effect attached to the gameobject as child
-        public GameObject muzzleParticle; // Effect instantly spawned when gameobject is spawned
+        public UnityEngine.GameObject impactParticle; // Effect spawned when projectile hits a collider
+        public UnityEngine.GameObject projectileParticle; // Effect attached to the gameobject as child
+        public UnityEngine.GameObject muzzleParticle; // Effect instantly spawned when gameobject is spawned
         [Header("Adjust if not using Sphere Collider")]
         public float colliderRadius = 1f;
         [Range(0f, 1f)] // This is an offset that moves the impact effect slightly away from the point of impact to reduce clipping of the impact effect
@@ -13,11 +13,11 @@ using System.Collections;
 
         void Start()
         {
-            projectileParticle = Instantiate(projectileParticle, transform.position, transform.rotation) as GameObject;
+        projectileParticle = Instantiate(projectileParticle, transform.position, transform.rotation) as UnityEngine.GameObject;
             projectileParticle.transform.parent = transform;
             if (muzzleParticle)
             {
-                muzzleParticle = Instantiate(muzzleParticle, transform.position, transform.rotation) as GameObject;
+            muzzleParticle = Instantiate(muzzleParticle, transform.position, transform.rotation) as UnityEngine.GameObject;
                 Destroy(muzzleParticle, 1.5f); // 2nd parameter is lifetime of effect in seconds
             }
         }
@@ -48,7 +48,7 @@ using System.Collections;
             {
                 transform.position = hit.point + (hit.normal * collideOffset); // Move projectile to point of collision
 
-                GameObject impactP = Instantiate(impactParticle, transform.position, Quaternion.FromToRotation(Vector3.up, hit.normal)) as GameObject; // Spawns impact effect
+            UnityEngine.GameObject impactP = Instantiate(impactParticle, transform.position, Quaternion.FromToRotation(Vector3.up, hit.normal)) as UnityEngine.GameObject; // Spawns impact effect
 
                 ParticleSystem[] trails = GetComponentsInChildren<ParticleSystem>(); // Gets a list of particle systems, as we need to detach the trails
                 //Component at [0] is that of the parent i.e. this object (if there is any)

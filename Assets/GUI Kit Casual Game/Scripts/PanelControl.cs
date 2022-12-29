@@ -12,7 +12,7 @@ namespace LayerLab
     {
         private int page = 0;
         private bool isReady = false;
-        [SerializeField] private List<GameObject> panels = new List<GameObject>();
+        [SerializeField] private List<UnityEngine.GameObject> panels = new List<UnityEngine.GameObject>();
         private TextMeshProUGUI textTitle;
         [SerializeField] private Transform panelTransform;
         [SerializeField] private Button buttonPrev;

@@ -6,7 +6,7 @@ namespace LayerLab
 {
     public class Panel : MonoBehaviour
     {
-        [SerializeField] private GameObject[] otherPanels;
+        [SerializeField] private UnityEngine.GameObject[] otherPanels;
 
         public void OnEnable()
         {

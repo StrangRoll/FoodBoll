@@ -6,6 +6,7 @@ using Zenject;
 public class PlayerInputRoot : MonoBehaviour
 {
     [Inject] private StartAnimationHandler _startAnimation;
+    [Inject] private ExitAnimationHandler _exitAnimation;
 
     private PlayerInput _playerInput;
     private bool _isTouching = false;
@@ -34,6 +35,12 @@ public class PlayerInputRoot : MonoBehaviour
         if (_startAnimation.IsGoing)
         {
             Move?.Invoke(Vector3.right);
+            return;
+        }
+
+        if (_exitAnimation.IsGoing)
+        {
+            Move?.Invoke(Vector3.left);
             return;
         }
 

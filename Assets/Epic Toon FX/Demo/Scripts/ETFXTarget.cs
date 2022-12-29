@@ -7,9 +7,9 @@ namespace EpicToonFX
 public class ETFXTarget : MonoBehaviour
 {
     [Header("Effect shown on target hit")]
-	public GameObject hitParticle;
+	public UnityEngine.GameObject hitParticle;
     [Header("Effect shown on target respawn")]
-	public GameObject respawnParticle;
+	public UnityEngine.GameObject respawnParticle;
 	private Renderer targetRenderer;
 	private Collider targetCollider;
 
@@ -23,7 +23,7 @@ public class ETFXTarget : MonoBehaviour
     {
         targetRenderer.enabled = true; //Shows the target
 		targetCollider.enabled = true; //Enables the collider
-		GameObject respawnEffect = Instantiate(respawnParticle, transform.position, transform.rotation) as GameObject; //Spawns attached respawn effect
+            UnityEngine.GameObject respawnEffect = Instantiate(respawnParticle, transform.position, transform.rotation) as UnityEngine.GameObject; //Spawns attached respawn effect
 		Destroy(respawnEffect, 3.5f); //Removes attached respawn effect after x seconds
     }
 
@@ -33,8 +33,8 @@ public class ETFXTarget : MonoBehaviour
         {
             if (hitParticle)
             {
-				//Debug.Log("Target hit!");
-				GameObject destructibleEffect = Instantiate(hitParticle, transform.position, transform.rotation) as GameObject; // Spawns attached hit effect
+                    //Debug.Log("Target hit!");
+                    UnityEngine.GameObject destructibleEffect = Instantiate(hitParticle, transform.position, transform.rotation) as UnityEngine.GameObject; // Spawns attached hit effect
 				Destroy(destructibleEffect, 2f); // Removes hit effect after x seconds
 				targetRenderer.enabled = false; // Hides the target
 				targetCollider.enabled = false; // Disables target collider

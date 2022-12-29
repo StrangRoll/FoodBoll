@@ -13,6 +13,11 @@ public class MoneyCell
         IsEmpty = true;
     }
 
+    public void PickupMoney()
+    {
+        _money.Pickup();
+    }
+
     public Vector3 GetPositionAndAddMoney(Money money)
     {
         IsEmpty = false;

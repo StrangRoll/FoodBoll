@@ -1,36 +1,37 @@
 using UnityEngine;
+using UnityEngine.Events;
 using Zenject;
 
 public class PlayerData : MonoBehaviour
 {
-    [SerializeField] private int _priceCapacity;
-    [SerializeField] private float _speed;
+    [Inject] private SphereMovier _sphere;
 
-    [Inject] private SpeedUpgradeButton _speedUpgrade;
-    [Inject] private CapacityUpgradeButton _capacityUpgrade;
+    private Transform _sphereTransform;
 
-    public int PriceCapacity { get { return _priceCapacity; } }
-    public float Speed { get { return _speed; } }
+    public event UnityAction<float> SizeIncreased;
 
-    private void OnEnable()
+    public float Speed { get; private set; } = 1.6f;
+    public int Capacity { get; private set; } = 100;
+    public float Size { get; private set; } = 1.6f;
+
+    private void Awake()
     {
-        _speedUpgrade.SpeedIncreased += OnSpeedIncreased;
-        _capacityUpgrade.CapacityIncreased += OnCapacityIncreased;
+        _sphereTransform = _sphere.transform;
     }
 
-    private void OnDisable()
+    public void IncreaseSpeed (float deltaSpeed)
     {
-        _speedUpgrade.SpeedIncreased -= OnSpeedIncreased;
-        _capacityUpgrade.CapacityIncreased -= OnCapacityIncreased;
+        Speed += deltaSpeed;
     }
 
-    private void OnSpeedIncreased(float deltaSpeed)
+    public void IncreaseCapacity(int deltaCapacity)
     {
-        _speed += deltaSpeed;
+        Capacity += deltaCapacity;
     }
 
-    private void OnCapacityIncreased(int deltaCapacity)
+    public void IncreaseSize(float deltaSize)
     {
-        _priceCapacity += deltaCapacity;
+        _sphereTransform.localScale += new Vector3(deltaSize, deltaSize, deltaSize);
+        SizeIncreased?.Invoke(deltaSize);
     }
 }

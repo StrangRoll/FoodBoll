@@ -12,13 +12,13 @@ GameObject:
   - component: {fileID: 2961440216043797277}
   - component: {fileID: 7602022867398408554}
   - component: {fileID: 1705387370909296273}
-  - component: {fileID: 2637222363472352181}
+  - component: {fileID: 7004115983501331189}
   m_Layer: 0
   m_Name: Apple
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 22
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &7653209253490696879
 Transform:
@@ -27,14 +27,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8646817162511582134}
-  m_LocalRotation: {x: 0.032097023, y: -0.92051846, z: 0.07534801, w: -0.3820186}
-  m_LocalPosition: {x: 0, y: 0.8, z: 0}
-  m_LocalScale: {x: 25, y: 25, z: 25}
+  m_LocalRotation: {x: 0.08833286, y: 0.95194024, z: 0.063954964, w: 0.28621113}
+  m_LocalPosition: {x: 0, y: 0.913, z: 0}
+  m_LocalScale: {x: 30, y: 30, z: 30}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 6.557, y: -225.464, z: -6.744}
+  m_LocalEulerAnglesHint: {x: -175.91699, y: -33.892, z: 191.847}
 --- !u!33 &2961440216043797277
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -98,7 +98,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.02251126
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2637222363472352181
+--- !u!114 &7004115983501331189
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,8 +107,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8646817162511582134}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 535cf7ff0ad560f4eaaa9e52589c7a75, type: 3}
+  m_Script: {fileID: 11500000, guid: 3912acaaa427a2948ae4bd2821d92884, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _price: 2
-  _requiredSpace: 1.3

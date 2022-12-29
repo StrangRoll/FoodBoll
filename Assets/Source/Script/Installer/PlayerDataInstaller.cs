@@ -10,6 +10,6 @@ public class PlayerDataInstaller : MonoInstaller
         Container
             .Bind<PlayerData>()
             .FromInstance(_data)
-            .AsSingle();
+            .AsSingle();    
     }
 }

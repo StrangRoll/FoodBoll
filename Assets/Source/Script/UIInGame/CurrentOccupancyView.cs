@@ -8,18 +8,18 @@ public class CurrentOccupancyView : MonoBehaviour
     [SerializeField] private RectTransform _iamgeRectTransform;
 
     [Inject] private Player _player;
-    [Inject] private SizeUpgradeButton _sizeUpgrade;
+    [Inject] private PlayerData _playerData;
 
     private void OnEnable()
     {
         _player.CurrentOccupancyChanged += OnCurrentOccupancyChanged;
-        _sizeUpgrade.SizeIncreased += OnSizeIncreased;
+        _playerData.SizeIncreased += OnSizeIncreased;
     }
 
     private void OnDisable()
     {
         _player.CurrentOccupancyChanged -= OnCurrentOccupancyChanged;
-        _sizeUpgrade.SizeIncreased -= OnSizeIncreased;
+        _playerData.SizeIncreased -= OnSizeIncreased;
     }
 
     private void OnCurrentOccupancyChanged(float currentValue, float maxValue)

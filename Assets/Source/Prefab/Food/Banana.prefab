@@ -12,13 +12,13 @@ GameObject:
   - component: {fileID: 6150220430910971804}
   - component: {fileID: 4939907999928501532}
   - component: {fileID: 827628791185722124}
-  - component: {fileID: 7827742335715748739}
+  - component: {fileID: 2716108577357053490}
   m_Layer: 0
   m_Name: Banana
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 22
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &8055193323745346310
 Transform:
@@ -27,14 +27,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3705172692863354920}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.1, z: 0}
-  m_LocalScale: {x: 22, y: 22, z: 22}
+  m_LocalRotation: {x: 0.005216587, y: -0.094031364, z: 0.055145737, w: 0.9940271}
+  m_LocalPosition: {x: 0, y: 1.25, z: 0}
+  m_LocalScale: {x: 20, y: 20, z: 20}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 1.188, y: -10.743, z: 6.239}
 --- !u!33 &6150220430910971804
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -98,7 +98,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.095, y: 0.075, z: 0.084}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7827742335715748739
+--- !u!114 &2716108577357053490
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,8 +107,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3705172692863354920}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 535cf7ff0ad560f4eaaa9e52589c7a75, type: 3}
+  m_Script: {fileID: 11500000, guid: 3912acaaa427a2948ae4bd2821d92884, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _price: 4
-  _requiredSpace: 2

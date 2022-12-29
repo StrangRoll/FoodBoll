@@ -4,7 +4,7 @@ using Zenject;
 public class UpgradeButtonsInstaller : MonoInstaller
 {
     [SerializeField] private SpeedUpgradeButton _speedButton;
-    [SerializeField] private SizeUpgradeButton _sizeButton;
+    [SerializeField] private SizeUpgradeButton  _sizeButton;
     [SerializeField] private CapacityUpgradeButton _capacityButton;
 
     public override void InstallBindings()

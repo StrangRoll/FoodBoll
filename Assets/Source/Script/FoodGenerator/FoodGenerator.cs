@@ -30,7 +30,7 @@ public class FoodGenerator : MonoBehaviour
             var RandomCircle = _radius * Random.insideUnitCircle;
             Vector3 foodPosition = transform.position + new Vector3(RandomCircle.x, food.transform.position.y, RandomCircle.y);
             var newFood = NightPool.Spawn(food, transform.position, food.transform.rotation);
-            newFood.Init(foodPosition, _jumpPower, _jumpDuration, _startScale);
+            newFood.Init(foodPosition, _jumpPower, _jumpDuration, _startScale, _foodPrefabs[foodIndex]);
         }
 
         var newParticle = NightPool.Spawn(_particle, transform.position + _particle.transform.position, _particle.transform.rotation);

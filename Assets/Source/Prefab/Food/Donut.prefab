@@ -12,13 +12,13 @@ GameObject:
   - component: {fileID: 5011228556000597634}
   - component: {fileID: 2386325279002330204}
   - component: {fileID: 4793267117564928848}
-  - component: {fileID: 3589275347353312653}
+  - component: {fileID: 8572301508901362883}
   m_Layer: 0
   m_Name: Donut
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 22
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4565798006104691877
 Transform:
@@ -27,14 +27,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5530820638868823270}
-  m_LocalRotation: {x: -0.25323778, y: -0.02781138, z: -0.2481836, w: 0.9346133}
-  m_LocalPosition: {x: 0, y: 0.8363883, z: 0}
-  m_LocalScale: {x: 30, y: 30, z: 30}
+  m_LocalRotation: {x: -0.26855734, y: -0.058035575, z: -0.016212024, w: 0.96137714}
+  m_LocalPosition: {x: -0.0028054244, y: 1.23, z: 0.023152167}
+  m_LocalScale: {x: 25.000002, y: 25.000002, z: 25.000002}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -29.154, y: 4.842, z: -31.003}
+  m_LocalEulerAnglesHint: {x: -31.215, y: -6.909, z: 0}
 --- !u!33 &5011228556000597634
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -98,7 +98,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.04, y: 0.017, z: 0.04}
   m_Center: {x: 0, y: 0.001, z: 0}
---- !u!114 &3589275347353312653
+--- !u!114 &8572301508901362883
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,8 +107,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5530820638868823270}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 535cf7ff0ad560f4eaaa9e52589c7a75, type: 3}
+  m_Script: {fileID: 11500000, guid: 3912acaaa427a2948ae4bd2821d92884, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _price: 2
-  _requiredSpace: 1.2

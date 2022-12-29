@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 public class FurnitureDestroyer : MonoBehaviour
 {
-    [SerializeField] private GameObject _view;
+    [SerializeField] private UnityEngine.GameObject _view;
     [SerializeField] private Rigidbody[] _selfParts;
     [SerializeField] private Collider[] _selfPartColliders;
     [SerializeField] private Rigidbody _meal;

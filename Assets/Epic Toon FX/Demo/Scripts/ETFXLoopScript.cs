@@ -5,7 +5,7 @@ namespace EpicToonFX
 {
 	public class ETFXLoopScript : MonoBehaviour
 	{
-		public GameObject chosenEffect;
+		public UnityEngine.GameObject chosenEffect;
 		public float loopTimeLimit = 2.0f;
 	
 		[Header("Spawn without")]
@@ -25,7 +25,7 @@ namespace EpicToonFX
 
 		IEnumerator EffectLoop()
 		{
-			GameObject effectPlayer = (GameObject) Instantiate(chosenEffect, transform.position, transform.rotation);
+            UnityEngine.GameObject effectPlayer = (UnityEngine.GameObject)Instantiate(chosenEffect, transform.position, transform.rotation);
 		
 			if(spawnWithoutLight = true && effectPlayer.GetComponent<Light>())
 			{

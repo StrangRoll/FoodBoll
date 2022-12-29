@@ -9,7 +9,7 @@ namespace EpicToonFX
 
 public class ETFXButtonScript : MonoBehaviour
 {
-	public GameObject Button;
+	public UnityEngine.GameObject Button;
 	Text MyButtonText;
 	string projectileParticleName;		// The variable to update the text component of the button
 
@@ -24,7 +24,7 @@ public class ETFXButtonScript : MonoBehaviour
 	
 	void Start ()
 	{
-		effectScript = GameObject.Find("ETFXFireProjectile").GetComponent<ETFXFireProjectile>();
+            effectScript = UnityEngine.GameObject.Find("ETFXFireProjectile").GetComponent<ETFXFireProjectile>();
 		getProjectileNames();
 		MyButtonText = Button.transform.Find("Text").GetComponent<Text>();
 		MyButtonText.text = projectileParticleName;

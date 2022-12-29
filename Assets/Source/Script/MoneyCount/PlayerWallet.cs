@@ -8,7 +8,6 @@ public class PlayerWallet : MonoBehaviour
 
     [Inject] private VideoAdd _videoAdd;
     [Inject] private MoneyPickuper _pickuper;
-    [Inject] private PlayerDataLoader _loader;
 
     private int _money = 0;
     private int _reservedMoney = 0;
@@ -20,7 +19,6 @@ public class PlayerWallet : MonoBehaviour
     {
         _pickuper.MoneyPickedUp += OnMoneyPickedUp;
         _videoAdd.VideoAddShowed += OnVideoAddShowed;
-        _loader.MoneyCountLoaded += OnMoneyCountLoaded;
         _moneyCreator.MoneyPlusCreated += OnMoneyPlusCreated;
     }
 
@@ -28,7 +26,6 @@ public class PlayerWallet : MonoBehaviour
     {
         _pickuper.MoneyPickedUp -= OnMoneyPickedUp;
         _videoAdd.VideoAddShowed -= OnVideoAddShowed;
-        _loader.MoneyCountLoaded -= OnMoneyCountLoaded;
         _moneyCreator.MoneyPlusCreated -= OnMoneyPlusCreated;
     }
 
@@ -54,14 +51,14 @@ public class PlayerWallet : MonoBehaviour
         _reservedMoney = 0;
     }
 
+    public void MoneyCountLoaded(int money)
+    {
+        ChangeMoneyCount(money);
+    }
+
     private void OnMoneyPlusCreated()
     {
         ChangeMoneyCount(1);
-    }
-
-    private void OnMoneyCountLoaded(int money)
-    {
-        ChangeMoneyCount(money);
     }
 
     private void OnVideoAddShowed(int money)

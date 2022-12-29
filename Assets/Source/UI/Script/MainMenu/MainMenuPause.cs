@@ -10,7 +10,7 @@ public class MainMenuPause : MonoBehaviour, IPauseHandler
 
     [Inject] private PauseManager _paseManager;
 
-    private GameObject _mainMenu;
+    private UnityEngine.GameObject _mainMenu;
 
     public event UnityAction GameContinued;
 

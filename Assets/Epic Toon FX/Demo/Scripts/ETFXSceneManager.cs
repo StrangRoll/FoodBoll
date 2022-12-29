@@ -108,11 +108,11 @@ public class ETFXSceneManager : MonoBehaviour
      
          if (GUIHide)
 		 {
-             GameObject.Find("CanvasSceneSelect").GetComponent<Canvas> ().enabled = false;
+                UnityEngine.GameObject.Find("CanvasSceneSelect").GetComponent<Canvas> ().enabled = false;
          }
 		 else
 		 {
-             GameObject.Find("CanvasSceneSelect").GetComponent<Canvas> ().enabled = true;
+                UnityEngine.GameObject.Find("CanvasSceneSelect").GetComponent<Canvas> ().enabled = true;
          }
      }
 	      if(Input.GetKeyDown(KeyCode.J))
@@ -121,11 +121,11 @@ public class ETFXSceneManager : MonoBehaviour
      
          if (GUIHide2)
 		 {
-             GameObject.Find("Canvas").GetComponent<Canvas> ().enabled = false;
+                UnityEngine.GameObject.Find("Canvas").GetComponent<Canvas> ().enabled = false;
          }
 		 else
 		 {
-             GameObject.Find("Canvas").GetComponent<Canvas> ().enabled = true;
+                UnityEngine.GameObject.Find("Canvas").GetComponent<Canvas> ().enabled = true;
          }
      }
 		if(Input.GetKeyDown(KeyCode.H))
@@ -134,11 +134,11 @@ public class ETFXSceneManager : MonoBehaviour
      
          if (GUIHide3)
 		 {
-             GameObject.Find("ParticleSysDisplayCanvas").GetComponent<Canvas> ().enabled = false;
+                UnityEngine.GameObject.Find("ParticleSysDisplayCanvas").GetComponent<Canvas> ().enabled = false;
          }
 		 else
 		 {
-             GameObject.Find("ParticleSysDisplayCanvas").GetComponent<Canvas> ().enabled = true;
+                UnityEngine.GameObject.Find("ParticleSysDisplayCanvas").GetComponent<Canvas> ().enabled = true;
          }
      }
 	 	if(Input.GetKeyDown(KeyCode.K))
@@ -147,11 +147,11 @@ public class ETFXSceneManager : MonoBehaviour
      
          if (GUIHide3)
 		 {
-             GameObject.Find("CanvasTips").GetComponent<Canvas> ().enabled = false;
+                UnityEngine.GameObject.Find("CanvasTips").GetComponent<Canvas> ().enabled = false;
          }
 		 else
 		 {
-             GameObject.Find("CanvasTips").GetComponent<Canvas> ().enabled = true;
+                UnityEngine.GameObject.Find("CanvasTips").GetComponent<Canvas> ().enabled = true;
          }
      }
 	}	

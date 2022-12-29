@@ -13,12 +13,12 @@ namespace NTC.Global.Pool
     public class Poolable : MonoBehaviour, IPoolItem
     {
         public Pool Pool { get; private set; }
-        public GameObject Prefab { get; private set; }
+        public UnityEngine.GameObject Prefab { get; private set; }
         public bool IsActive { get; private set; }
         
         private bool isSetup;
 
-        public void Setup(Pool pool, GameObject prefab, bool active)
+        public void Setup(Pool pool, UnityEngine.GameObject prefab, bool active)
         {
             if (isSetup)
                 return;

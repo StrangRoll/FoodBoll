@@ -12,10 +12,10 @@ namespace NTC.Global.Pool
     [Serializable]
     public sealed class PoolItem
     {
-        [SerializeField] private GameObject prefab;
+        [SerializeField] private UnityEngine.GameObject prefab;
         [SerializeField] private int size;
         
-        public GameObject Prefab => prefab;
+        public UnityEngine.GameObject Prefab => prefab;
         public int Size => size;
     }
 }

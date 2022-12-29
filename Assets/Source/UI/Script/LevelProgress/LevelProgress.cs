@@ -4,7 +4,6 @@ using Zenject;
 
 public class LevelProgress : MonoBehaviour, ISliderCountChanger
 {
-    [Inject] private OldFoodGenerator _generator;
     [Inject] private FoodPickuper _pickuper;
     [Inject] private PlayerDataLoader _saveLoader;
 
@@ -18,14 +17,12 @@ public class LevelProgress : MonoBehaviour, ISliderCountChanger
 
     private void OnEnable()
     {
-        _generator.FoodGenerated += OnFoodGenerated;
         _pickuper.FoodPickedUp += OnFoodPickedUp;
         _saveLoader.LevelNomberLoaded += OnLevelNomberLoaded;
     }
 
     private void OnDisable()
     {
-        _generator.FoodGenerated -= OnFoodGenerated;
         _pickuper.FoodPickedUp -= OnFoodPickedUp;
         _saveLoader.LevelNomberLoaded -= OnLevelNomberLoaded;
     }

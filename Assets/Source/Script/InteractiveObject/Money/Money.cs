@@ -4,6 +4,8 @@ using UnityEngine.Events;
 
 public class Money : MonoBehaviour, IPoolItem
 {
+    private MoneyPickuper _player;
+
     public event UnityAction MoneyRemoved;
 
     private Vector3 _startScale;
@@ -13,12 +15,14 @@ public class Money : MonoBehaviour, IPoolItem
         _startScale = transform.localScale;
     }
 
-    private void OnTriggerEnter(Collider collider)
+    public void Init(MoneyPickuper pickuper)
     {
-        if (collider.TryGetComponent<MoneyPickuper>(out MoneyPickuper component))
-        {
-            component.Pickup(this);
-        }
+        _player = pickuper;
+    }
+
+    public void Pickup()
+    {
+        _player.Pickup(this);
     }
 
     public void DestroyMoney()

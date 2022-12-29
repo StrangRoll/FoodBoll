@@ -11,8 +11,8 @@ public class MainMenuLeaderboard : MonoBehaviour
 
     [Inject] private Autorization _autorization;
 
-    private GameObject _leaderboard;
-    private GameObject _autorizationBoard;
+    private UnityEngine.GameObject _leaderboard;
+    private UnityEngine.GameObject _autorizationBoard;
 
     private void Awake()
     {

@@ -10,7 +10,7 @@ public class AuthorizationCanvasActivator : MonoBehaviour
 
     [Inject] private Autorization _autorizationScript;
 
-    private GameObject _authorization;
+    private UnityEngine.GameObject _authorization;
 
     private void Awake()
     {

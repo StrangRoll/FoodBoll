@@ -9,7 +9,7 @@ public class RectTransformByButtonActivator : MonoBehaviour
 
     [Inject] private PauseManager _pauseManager;
 
-    private GameObject _transformObject;
+    private UnityEngine.GameObject _transformObject;
 
     private void Awake()
     {

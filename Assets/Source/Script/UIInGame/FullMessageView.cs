@@ -10,7 +10,7 @@ public class FullMessageView : MonoBehaviour
     [SerializeField] private RectTransform _rectTransform;
 
     [Inject] private Player _player;
-    [Inject] private SizeUpgradeButton _sizeUpgrade;
+    [Inject] private PlayerData _sizeUpgrade;
 
     private void OnEnable()
     {

@@ -11,8 +11,11 @@ public class MoneyCreator : MonoBehaviour
     [SerializeField] private Money _moneyPrefab;
 
     [Inject] private readonly IEnumerable<MoneyCell> _moneyCells;
+    [Inject] private MoneyPickuper _player;
 
     private Quaternion _moneyRotation;
+
+    public Stack<Money> FilledMoneyCells = new Stack<Money>();
 
     public event UnityAction<Vector3, Money> MoneyCreated;
     public event UnityAction MoneyPlusCreated;
@@ -41,10 +44,11 @@ public class MoneyCreator : MonoBehaviour
             if (moneyCell != null)
             {
                 var newMoney = NightPool.Spawn(_moneyPrefab, Vector3.zero, _moneyRotation);
+                newMoney.Init(_player);
                 var moneyPosition = moneyCell.GetPositionAndAddMoney(newMoney);
+                FilledMoneyCells.Push(newMoney);
                 MoneyCreated?.Invoke(moneyPosition, newMoney);
             }
-
             else
             {
                 MoneyPlusCreated?.Invoke();

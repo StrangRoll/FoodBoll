@@ -18,12 +18,12 @@ namespace NTC.Global.Pool
         /// <summary>
         /// Event for each spawned GameObject
         /// </summary>
-        public static event Action<GameObject> OnObjectSpawned;
+        public static event Action<UnityEngine.GameObject> OnObjectSpawned;
         
         /// <summary>
         /// Event for each despawned GameObject
         /// </summary>
-        public static event Action<GameObject> OnObjectDespawned;
+        public static event Action<UnityEngine.GameObject> OnObjectDespawned;
         
         /// <summary>
         /// List of all pools
@@ -77,12 +77,12 @@ namespace NTC.Global.Pool
                 GetComponent<T>();
         }
 
-        public static GameObject Spawn(GameObject toSpawn, Vector3 position = default, Quaternion rotation = default)
+        public static UnityEngine.GameObject Spawn(UnityEngine.GameObject toSpawn, Vector3 position = default, Quaternion rotation = default)
         {
             return DefaultSpawn(toSpawn, position, rotation, null, false);
         }
         
-        public static GameObject Spawn(GameObject toSpawn, Transform parent, Quaternion rotation = default, 
+        public static UnityEngine.GameObject Spawn(UnityEngine.GameObject toSpawn, Transform parent, Quaternion rotation = default, 
             bool worldPositionStays = false)
         {
             var position = parent != null 
@@ -97,7 +97,7 @@ namespace NTC.Global.Pool
             DefaultDespawn(toDespawn.gameObject, delay);
         }
 
-        public static void Despawn(GameObject toDespawn, float delay = 0f)
+        public static void Despawn(UnityEngine.GameObject toDespawn, float delay = 0f)
         {
             DefaultDespawn(toDespawn, delay);
         }
@@ -105,7 +105,7 @@ namespace NTC.Global.Pool
         /// <summary>
         /// Destroys pool by GameObject
         /// </summary>
-        public static void DestroyPool(GameObject gameObject)
+        public static void DestroyPool(UnityEngine.GameObject gameObject)
         {
             if (gameObject == null)
             {
@@ -179,7 +179,7 @@ namespace NTC.Global.Pool
         /// Allows to search for the requires pool by prefab of GameObject
         /// </summary>
         /// <returns> Pool by prefab if exists one. Otherwise, it will create a new </returns>
-        public static Pool GetPoolByPrefab(GameObject prefab)
+        public static Pool GetPoolByPrefab(UnityEngine.GameObject prefab)
         {
             var count = AllPools.Count;
             
@@ -198,9 +198,9 @@ namespace NTC.Global.Pool
         /// Creates a new pool
         /// </summary>
         /// <returns> A new pool </returns>
-        private static Pool CreateNewPool(GameObject prefab)
+        private static Pool CreateNewPool(UnityEngine.GameObject prefab)
         {
-            var poolParent = new GameObject($"[NightPool] {prefab.name}");
+            var poolParent = new UnityEngine.GameObject($"[NightPool] {prefab.name}");
             var newPool = poolParent.AddComponent<Pool>();
             
             newPool.Setup(prefab, poolParent.transform);
@@ -214,7 +214,7 @@ namespace NTC.Global.Pool
         /// Default spawn method
         /// </summary>
         /// <returns> Spawned GameObject </returns>
-        private static GameObject DefaultSpawn(GameObject prefab, Vector3 position, Quaternion rotation, 
+        private static UnityEngine.GameObject DefaultSpawn(UnityEngine.GameObject prefab, Vector3 position, Quaternion rotation, 
             Transform parent, bool worldPositionStays)
         {
             if (IsEditor)
@@ -238,7 +238,7 @@ namespace NTC.Global.Pool
         /// </summary>
         /// <param name="toDespawn"> GameObject to despawn </param>
         /// <param name="delay"> For despawn with a delay </param>
-        private static async void DefaultDespawn(GameObject toDespawn, float delay = 0f)
+        private static async void DefaultDespawn(UnityEngine.GameObject toDespawn, float delay = 0f)
         {
             if (IsEditor)
                 return;
@@ -294,7 +294,7 @@ namespace NTC.Global.Pool
         /// <summary>
         /// Tries to find IPoolItem component on GameObject and invokes void OnSpawn() if found
         /// </summary>
-        private static void CheckForSpawnEvents(GameObject toCheck)
+        private static void CheckForSpawnEvents(UnityEngine.GameObject toCheck)
         {
             OnObjectSpawned?.Invoke(toCheck);
 
@@ -309,7 +309,7 @@ namespace NTC.Global.Pool
         /// <summary>
         /// Tries to find IPoolItem component on GameObject and invokes void OnDespawn() if found
         /// </summary>
-        private static void CheckForDespawnEvents(GameObject toCheck)
+        private static void CheckForDespawnEvents(UnityEngine.GameObject toCheck)
         {
             OnObjectDespawned?.Invoke(toCheck);
             

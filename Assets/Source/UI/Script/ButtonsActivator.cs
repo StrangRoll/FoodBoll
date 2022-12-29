@@ -9,7 +9,7 @@ public class ButtonsActivator : MonoBehaviour
     [SerializeField] private Warning _warning;
     [SerializeField] private MonoBehaviour _platformContainer;
 
-    private GameObject _foodWarning;
+    private UnityEngine.GameObject _foodWarning;
 
     private IPlatform _platform => (IPlatform)_platformContainer;
 

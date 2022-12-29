@@ -12,7 +12,7 @@ namespace NTC.Global.Pool
     [DisallowMultipleComponent]
     public class Pool : MonoBehaviour
     {
-        public GameObject Prefab { get; private set; }
+        public UnityEngine.GameObject Prefab { get; private set; }
         public Transform PoolablesParent { get; private set; }
         
         public IReadOnlyList<Poolable> Poolables => pooledGameObjects;
@@ -21,7 +21,7 @@ namespace NTC.Global.Pool
         
         private bool isSetup;
         
-        public void Setup(GameObject prefab, Transform parent)
+        public void Setup(UnityEngine.GameObject prefab, Transform parent)
         {
             if (isSetup) return;
 

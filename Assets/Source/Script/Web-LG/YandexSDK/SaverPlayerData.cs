@@ -7,8 +7,7 @@ using Zenject;
 
 public class SaverPlayerData : MonoBehaviour
 {
-    [Inject] private LevelProgress _levelProgress;
-    [Inject] private SizeUpgradeButton _sizeButton;
+    [Inject] private PlayerData _sizeButton;
     [Inject] private SpeedUpgradeButton _speedButton;
     [Inject] private CapacityUpgradeButton _capacityButton;
     [Inject] private PlayerWallet _wallet;
@@ -30,7 +29,6 @@ public class SaverPlayerData : MonoBehaviour
 
     private void OnEnable()
     {
-        _levelProgress.LevelChanged += OnLevelChanged;
         _speedButton.SpeedIncreased += OnSpeedIncreased;
         _sizeButton.SizeIncreased += OnSizeIncreased;
         _capacityButton.CapacityIncreased += OnCapacityIncreased;
@@ -39,7 +37,6 @@ public class SaverPlayerData : MonoBehaviour
 
     private void OnDisable()
     {
-        _levelProgress.LevelChanged -= OnLevelChanged;
         _speedButton.SpeedIncreased -= OnSpeedIncreased;
         _sizeButton.SizeIncreased -= OnSizeIncreased;
         _capacityButton.CapacityIncreased -= OnCapacityIncreased;

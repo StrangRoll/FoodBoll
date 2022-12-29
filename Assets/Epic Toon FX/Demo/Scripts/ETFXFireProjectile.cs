@@ -7,7 +7,7 @@ namespace EpicToonFX
     public class ETFXFireProjectile : MonoBehaviour
     {
         [SerializeField]
-        public GameObject[] projectiles;
+        public UnityEngine.GameObject[] projectiles;
         [Header("Missile spawns at attached game object")]
         public Transform spawnPosition;
         [HideInInspector]
@@ -19,7 +19,7 @@ namespace EpicToonFX
 
         void Start()
         {
-            selectedProjectileButton = GameObject.Find("Button").GetComponent<ETFXButtonScript>();
+            selectedProjectileButton = UnityEngine.GameObject.Find("Button").GetComponent<ETFXButtonScript>();
         }
 
         RaycastHit hit;
@@ -51,7 +51,7 @@ namespace EpicToonFX
                 {
                     if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100f)) //Finds the point where you click with the mouse
                     {
-                        GameObject projectile = Instantiate(projectiles[currentProjectile], spawnPosition.position, Quaternion.identity) as GameObject; //Spawns the selected projectile
+                        UnityEngine.GameObject projectile = Instantiate(projectiles[currentProjectile], spawnPosition.position, Quaternion.identity) as UnityEngine.GameObject; //Spawns the selected projectile
                         projectile.transform.LookAt(hit.point); //Sets the projectiles rotation to look at the point clicked
                         projectile.GetComponent<Rigidbody>().AddForce(projectile.transform.forward * speed); //Set the speed of the projectile by applying force to the rigidbody
                     }
